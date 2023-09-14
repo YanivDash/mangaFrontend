@@ -7,7 +7,9 @@ const Login = () => {
     email: "",
     password: "",
   });
-  axios.defaults.withCredentials = true;
+
+  // axios.defaults.withCredentials = true;
+
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -18,7 +20,8 @@ const Login = () => {
 
       .then((res) => {
         if (res.data.Status === "success") {
-          navigate("/createManga");
+          console.log(res);
+          console.log("came here");
         } else {
           alert(res.data.Error);
         }

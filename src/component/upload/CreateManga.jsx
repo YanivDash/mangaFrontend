@@ -15,6 +15,7 @@ const CreateManga = () => {
     mangaLink: "",
     mangaClass: "",
   });
+  console.log("new updated");
 
   axios.defaults.withCredentials = true;
 
