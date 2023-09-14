@@ -8,7 +8,7 @@ const Login = () => {
     password: "",
   });
 
-  axios.defaults.withCredentials = true;
+  // axios.defaults.withCredentials = true;
 
   const navigate = useNavigate();
 
@@ -16,12 +16,14 @@ const Login = () => {
     event.preventDefault();
 
     axios
-      .post(`${import.meta.env.VITE_BASE_URL}/login`, values)
+      .post(`${import.meta.env.VITE_BASE_URL}/login`, values, {
+        withCredentials: true,
+      })
 
       .then((res) => {
         if (res.data.Status === "success") {
-          console.log(res.cookie);
-          navigate("/createManga");
+          console.log(res);
+          // navigate("/createManga");
         } else {
           alert(res.data.Error);
         }
