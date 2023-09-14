@@ -8,7 +8,7 @@ const Login = () => {
     password: "",
   });
 
-  // axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
   const navigate = useNavigate();
 
@@ -20,8 +20,8 @@ const Login = () => {
 
       .then((res) => {
         if (res.data.Status === "success") {
-          console.log(res);
-          console.log("came here");
+          console.log(res.cookie);
+          navigate("/createManga");
         } else {
           alert(res.data.Error);
         }
