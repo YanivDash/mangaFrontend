@@ -1,11 +1,10 @@
-import { uploadManga } from "../../../apiCall";
 import axios from "axios";
+import "../../styles/createMangaCss/createManga.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/createMangaCss/createManga.css";
 import { useLocation } from "react-router-dom";
 
-const CreateManga = () => {
+const AddCreateManga = () => {
   const [auth, setAuth] = useState(false);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
@@ -13,6 +12,7 @@ const CreateManga = () => {
     websiteName: "",
     mangaName: "",
     mangaCover: "",
+    mangaLink: "",
     mangaClass: "",
   });
   const [response, setResponse] = useState(false);
@@ -63,9 +63,12 @@ const CreateManga = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setResponse(true);
-    const result = await uploadManga(values);
-    setResponse(false);
+    const result = await axios.post(
+      `${import.meta.env.VITE_ADV_BASE_URL}/advCreateManga`,
+      values
+    );
     console.log(result);
+    setResponse(false);
     alert(result.message);
   };
 
@@ -127,6 +130,21 @@ const CreateManga = () => {
               />
             </div>
             <div className='upload_form_item'>
+              <label htmlFor='mangaLink'>
+                {" "}
+                <strong>mangaLink</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter mangaLink'
+                name='mangaLink'
+                onChange={(e) =>
+                  setValues({ ...values, mangaLink: e.target.value })
+                }
+              />
+            </div>
+            <div className='upload_form_item'>
               <label htmlFor='mangaClass'>
                 {" "}
                 <strong>mangaClass</strong>
@@ -173,4 +191,4 @@ const CreateManga = () => {
   );
 };
 
-export default CreateManga;
+export default AddCreateManga;

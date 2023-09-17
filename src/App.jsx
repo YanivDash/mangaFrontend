@@ -7,6 +7,7 @@ import {
   MangaChapter,
   MostViewed,
   Login,
+  AddCreateManga,
 } from "./component";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { fetchManga } from "../apiCall";
@@ -25,7 +26,11 @@ const App = () => {
     const fetchData = async () => {
       try {
         const manga = await fetchManga();
-        dispatch(allMangaAdd(manga.data.result));
+        if (manga.data.result) {
+          dispatch(allMangaAdd(manga.data.result));
+        } else if (manga.data.error) {
+          console.log(manga.data.error);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         throw error;
@@ -55,6 +60,7 @@ const App = () => {
         <Route exact path='/manga/:id' element={<MangaDetail />} />
         <Route exact path='/manga/:id/:chapter' element={<MangaChapter />} />
         <Route exact path='/createManga' element={<CreateManga />} />
+        <Route exact path='/AddCreateManga' element={<AddCreateManga />} />
         <Route path='/login' element={<Login />}></Route>
       </Routes>
     </>

@@ -6,6 +6,7 @@ import SubHeader from "./navbar/SubHeader";
 import CreateManga from "./upload/CreateManga";
 import MostViewed from "./mostViewed/MostViewed";
 import Login from "./upload/Login";
+import AddCreateManga from "./advanceUpload/AddCreateManga";
 
 export {
   Home,
@@ -16,4 +17,5 @@ export {
   CreateManga,
   MostViewed,
   Login,
+  AddCreateManga,
 };

@@ -18,12 +18,12 @@ const Login = () => {
     axios
       .post(`${import.meta.env.VITE_BASE_URL}/login`, values, {
         withCredentials: true,
+        crossDomain: true,
       })
 
       .then((res) => {
         if (res.data.Status === "success") {
-          console.log(res);
-          // navigate("/createManga");
+          navigate("/createManga", { state: { cookie: res.data.cookie } });
         } else {
           alert(res.data.Error);
         }

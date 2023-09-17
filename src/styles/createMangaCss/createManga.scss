@@ -121,6 +121,22 @@
       margin-left: 1em;
     }
   }
+  .create_scapeTest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+    input {
+      font-size: 1.5em;
+      padding: 10px;
+      width: 90%;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
 }
 @media screen and (max-width: 500px) {
   .yesAuth_container,

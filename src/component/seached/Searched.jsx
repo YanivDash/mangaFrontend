@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MangaCard from "../home/MangaCard";
-import { useEffect, useState } from "react";
 
 const Searched = () => {
   const location = useLocation();

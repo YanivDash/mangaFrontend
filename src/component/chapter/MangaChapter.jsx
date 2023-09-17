@@ -2,24 +2,33 @@
 import React, { useEffect, useState } from "react";
 import mangaChapter from "../../../apiCall/mangaChapter";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addChapterImg } from "../../reducers/chapterImgReducer";
 import "../../styles/chapterCss/chapter.css";
+import { useLocation } from "react-router-dom";
 
 const MangaChapter = () => {
+  const location = useLocation();
+  const chapterLink = location.state?.data;
+
   let urlParams = useParams();
   let { id, chapter } = urlParams;
+
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const mangas = useSelector((state) => state.allManga);
-  let data = mangas.allMangas;
+  const chapLinks = useSelector((state) => state.allChapLinks);
 
+  let data = mangas.allMangas;
   const chapData = useSelector((state) => state.chapterImg);
+
   let totalChapter;
   let mangaName;
+
   const mangaDetails = data.find((item) => {
     if (item.id == id) {
       totalChapter = item.totalChapter;
@@ -42,15 +51,13 @@ const MangaChapter = () => {
     };
 
     if (mangaDetails) {
-      const { mangaClass, mangaLink } = mangaDetails;
-      const regex = /chapterNumberHere/;
+      const { mangaClass } = mangaDetails;
 
-      let newUrl = mangaLink.replace(regex, `${chapter}`);
-      let values = { url: newUrl, chapClass: mangaClass };
+      let values = { url: chapterLink, chapClass: mangaClass };
 
       fetchData(values);
     }
-  }, [dispatch, mangaDetails, id, chapter]);
+  }, [dispatch, mangaDetails, id, chapterLink]);
 
   return (
     <div className='chapter_container'>
@@ -61,20 +68,32 @@ const MangaChapter = () => {
       </div>
       <div className='nextPrevBtn'>
         {chapter > 1 && (
-          <Link to={`/manga/${id}/${parseInt(chapter) - 1}`}>
-            <button type='button' onClick={() => setLoading(false)}>
-              previous
-            </button>
-          </Link>
+          <button
+            type='button'
+            onClick={() => {
+              navigate(`/manga/${id}/${parseInt(chapter) - 1}`, {
+                state: { data: chapLinks[parseInt(chapter) - 1] },
+              });
+              setLoading(false);
+            }}
+          >
+            previous
+          </button>
         )}
         {chapter >= totalChapter ? (
           ""
         ) : (
-          <Link to={`/manga/${id}/${parseInt(chapter) + 1}`}>
-            <button type='button' onClick={() => setLoading(false)}>
-              next
-            </button>
-          </Link>
+          <button
+            type='button'
+            onClick={() => {
+              navigate(`/manga/${id}/${parseInt(chapter) + 1}`, {
+                state: { data: chapLinks[parseInt(chapter) + 1] },
+              });
+              setLoading(false);
+            }}
+          >
+            next
+          </button>
         )}
       </div>
 
@@ -95,33 +114,34 @@ const MangaChapter = () => {
       ) : (
         <div className='whenLoad'></div>
       )}
-
-      {/* <div className='chapterImg_cotainer'>
-
-        { chapData.chapterImg ? (
-          chapData.chapterImg.map((el, index) => {
-            return (
-              <div key={index}>
-                <img src={el} alt='chapter image' />
-              </div>
-            );
-          })
-        ) : (
-          <h1>ntg here</h1>
-        )}
-      </div> */}
       <div className='nextPrevBtn'>
         {chapter > 1 && (
-          <Link to={`/manga/${id}/${parseInt(chapter) - 1}`}>
-            <button type='button'>previous</button>
-          </Link>
+          <button
+            type='button'
+            onClick={() => {
+              navigate(`/manga/${id}/${parseInt(chapter) - 1}`, {
+                state: { data: chapLinks[parseInt(chapter) - 1] },
+              });
+              setLoading(false);
+            }}
+          >
+            previous
+          </button>
         )}
         {chapter >= totalChapter ? (
           ""
         ) : (
-          <Link to={`/manga/${id}/${parseInt(chapter) + 1}`}>
-            <button type='button'>next</button>
-          </Link>
+          <button
+            type='button'
+            onClick={() => {
+              navigate(`/manga/${id}/${parseInt(chapter) + 1}`, {
+                state: { data: chapLinks[parseInt(chapter) + 1] },
+              });
+              setLoading(false);
+            }}
+          >
+            next
+          </button>
         )}
       </div>
     </div>
