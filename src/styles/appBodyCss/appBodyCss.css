@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: auto;
+  max-width: 1600px;
+}
+body a {
+  text-decoration: none;
+  list-style: none;
+}
+body button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+body button:focus,
+body button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.lightMode {
+  background-color: white;
+  color: black;
+}
+.lightMode a {
+  color: black;
+}
+.lightMode input {
+  background-color: black;
+  color: white;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+.lightMode input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.lightMode input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.lightMode input:focus {
+  border-color: rgba(218, 218, 218, 0.8);
+  background-color: white;
+  background-color: black;
+  outline: none;
+}
+.lightMode input:focus::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.lightMode input:focus::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.lightMode button {
+  color: black;
+  border: 2px solid white;
+  background-color: #f0f5f9;
+}
+.lightMode button:hover {
+  border-color: black;
+  color: #1e2022;
+}
+.lightMode .navbar_mobile_manga .nvabar_mobile_manga_type {
+  color: black;
+}
+.lightMode .navbar_mobile_manga li,
+.lightMode .navbar_mobile_manga .navbar_mobile_manga_item {
+  color: black;
+}
+.lightMode .navbar_mobile_manga li:hover,
+.lightMode .navbar_mobile_manga .navbar_mobile_manga_item:hover {
+  cursor: pointer;
+  color: #f1efef;
+  background-color: #393e46;
+  border-color: #222831;
+}
+.lightMode .iconColor {
+  color: black;
+}
+@media screen and (max-width: 1000px) {
+  .lightMode .iconColor {
+    color: white;
+  }
+}
+.lightMode .divVarientOne {
+  background-color: white;
+}
+.lightMode .divVarientTwo {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.lightMode .bgcolorOne {
+  background-color: #f9f7f7;
+}
+.lightMode .bgcolorTwo {
+  background-color: #f6f6f6;
+}
+.lightMode .bgcolorThree {
+  background-color: #f0f5f9;
+}
+.lightMode .bgcolorFour {
+  background-color: #f0f0f0;
+}
+
+.darkMode {
+  background-color: black;
+  color: white;
+}
+.darkMode a {
+  color: white;
+}
+.darkMode input {
+  background-color: white;
+  color: black;
+  border: 3px solid rgba(0, 0, 0, 0.5);
+}
+.darkMode input::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.8);
+}
+.darkMode input::placeholder {
+  color: rgba(0, 0, 0, 0.8);
+}
+.darkMode input:focus {
+  border-color: rgba(0, 0, 0, 0.9);
+  outline: none;
+}
+.darkMode button {
+  color: white;
+  border: 2px solid black;
+  background-color: #040d12;
+}
+.darkMode button:hover {
+  border-color: white;
+  color: greenyellow;
+}
+.darkMode .navbar_mobile_manga .nvabar_mobile_manga_type {
+  color: white;
+}
+.darkMode .navbar_mobile_manga li,
+.darkMode .navbar_mobile_manga .navbar_mobile_manga_item {
+  color: white;
+}
+.darkMode .navbar_mobile_manga li:hover,
+.darkMode .navbar_mobile_manga .navbar_mobile_manga_item:hover {
+  cursor: pointer;
+  color: #222831;
+  background-color: #eeeeee;
+  border-color: #393e46;
+}
+.darkMode .iconColor {
+  color: white;
+}
+.darkMode .divVarientOne {
+  background-color: black;
+}
+.darkMode .divVarientTwo {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.darkMode .bgcolorOne {
+  background-color: #000000;
+}
+.darkMode .bgcolorTwo {
+  background-color: #191825;
+}
+.darkMode .bgcolorThree {
+  background-color: #040d12;
+}
+.darkMode .bgcolorFour {
+  background-color: #001c30;
+}/*# sourceMappingURL=appBodyCss.css.map */

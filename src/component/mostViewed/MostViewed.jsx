@@ -1,4 +1,4 @@
-import MangaCard from "../home/MangaCard";
+import MangaCard from "../mangaCard/MangaCard";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 

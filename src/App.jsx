@@ -9,18 +9,17 @@ import {
   Login,
   AddCreateManga,
 } from "./component";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { fetchManga } from "../apiCall";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allMangaAdd } from "./reducers/allMangaReducer";
-import "./styles/appCss/app.css";
+import "./styles/appBodyCss/appBodyCss.css";
 import LatestManga from "./component/latest/LatestManga";
 import Searched from "./component/seached/Searched";
 
 const App = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,19 +40,11 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {location.pathname != "/" && <Navbar />}
+    <div className='appBodyContainer'>
+      <SubHeader />
+      <Navbar />
       <Routes>
-        <Route
-          path='/'
-          element={
-            <>
-              <SubHeader />
-              <Navbar />
-              <Home />
-            </>
-          }
-        />
+        <Route exact path='/' element={<Home />} />
         <Route exact path='/mostViewed' element={<MostViewed />} />
         <Route exact path='/latest' element={<LatestManga />} />
         <Route exact path='/searched' element={<Searched />} />
@@ -63,7 +54,7 @@ const App = () => {
         <Route exact path='/AddCreateManga' element={<AddCreateManga />} />
         <Route path='/login' element={<Login />}></Route>
       </Routes>
-    </>
+    </div>
   );
 };
 

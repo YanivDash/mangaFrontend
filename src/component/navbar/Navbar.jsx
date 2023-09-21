@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-
+import { useSelector, useDispatch } from "react-redux";
+import { lightAdd } from "../../reducers/lightMode";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbarCss/navbar.css";
 import { RiLightbulbFlashLine, RiLightbulbFlashFill } from "react-icons/ri";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { Logo, LogoWhiteMode } from "../../assets";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
@@ -12,9 +14,27 @@ const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [input, setInput] = useState("");
 
+  const dispatch = useDispatch();
+  const lightMode = useSelector((state) => state.light.light);
+  if (lightMode != light) setLight(lightMode);
+
+  if (light) {
+    if (document.body.className == "darkMode") {
+      document.body.className = "lightMode";
+    }
+  }
+  if (!light) {
+    if (document.body.className == "lightMode") {
+      document.body.className = "darkMode";
+    }
+  }
   const navigate = useNavigate();
 
   const handleInput = () => {
+    navigate("/searched", { state: { data: input } });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
     navigate("/searched", { state: { data: input } });
   };
 
@@ -27,49 +47,48 @@ const Navbar = () => {
             onClick={() => setMobileMenu(!mobileMenu)}
             className={
               mobileMenu
-                ? "navbar_icon_inverted navbar_menu_slide navbar_icons"
-                : "navbar_icon_simple navbar_menu_slide navbar_icons"
+                ? "navbar_icon_inverted  navbar_menu_slide navbar_icons"
+                : "navbar_icon_simple  navbar_menu_slide navbar_icons"
             }
           />
           <ul className='navbar_manga_lists'>
             <Link to='/'>
-              <li className='navbar_manga_item'>Home</li>
+              <img
+                className='navbarLogo'
+                src={`${light ? LogoWhiteMode : Logo}`}
+                alt='Logo'
+              />
             </Link>
             <Link to='/mostViewed'>
-              <li className='navbar_manga_item'>Most-Viewed</li>
+              <li className='iconColor navbar_manga_item'>Most-Viewed</li>
             </Link>
             <Link to='/latest'>
-              <li className='navbar_manga_item'>Latest</li>
+              <li className='iconColor navbar_manga_item'>Latest</li>
             </Link>
           </ul>
         </div>
         <div className='navbar_right'>
           <div>
             <div className='navbar_search'>
-              <input
-                required
-                type='text'
-                placeholder='Enter manga name'
-                name='searchInput'
-                onChange={(e) => setInput(e.target.value)}
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  required
+                  type='text'
+                  placeholder='Enter manga name'
+                  name='searchInput'
+                  onChange={(e) => setInput(e.target.value)}
+                />
+              </form>
               <p>
                 <IoSearchSharp
                   onClick={() => {
-                    console.log(search);
                     if (input) {
                       handleInput();
-                    }
-                    if (search) {
-                      console.log(
-                        document.getElementById("small_screen_input")
-                      );
-                      document.getElementById("small_screen_input").focus();
                     }
 
                     setSearch(!search);
                   }}
-                  className='navbar_icons'
+                  className='iconColor navbar_icons'
                 />
               </p>
             </div>
@@ -80,37 +99,49 @@ const Navbar = () => {
           >
             {" "}
             {light ? (
-              <RiLightbulbFlashFill className='navbar_none navbar_icons navbar_glowing' />
+              <RiLightbulbFlashFill
+                onClick={() => dispatch(lightAdd(!light))}
+                className='navbar_none navbar_icons  navbar_glowing'
+              />
             ) : (
-              <RiLightbulbFlashLine className='navbar_none navbar_icons' />
+              <RiLightbulbFlashLine
+                onClick={() => dispatch(lightAdd(!light))}
+                className='navbar_none navbar_icons'
+              />
             )}
           </p>
         </div>
       </div>
       {search ? (
-        <input
-          id='small_screen_input'
-          className='navbar_search_input'
-          type='text'
-          placeholder='enter manga...'
-          onChange={(e) => setInput(e.target.value)}
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            autoFocus
+            required
+            id='small_screen_input'
+            className='navbar_search_input'
+            type='text'
+            placeholder='enter manga...'
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </form>
       ) : undefined}
       <div
         className={
           mobileMenu
-            ? "navbar_mobile_show navbar_mobile"
-            : "navbar_mobile_hide navbar_mobile"
+            ? "navbar_mobile_show divVarientTwo navbar_mobile"
+            : "navbar_mobile_hide divVarientTwo navbar_mobile"
         }
       >
-        <div className='navbar_mobile_manga'>
+        <div className='divVarientOne navbar_mobile_manga'>
           <div className='navbar_mobile_left_inks'>
             <ul className='navbar_mobile_manga_lists'>
               <br />
               <Link to='/'>
-                <li className='navbar_mobile_manga_item'>
-                  <strong>Home</strong>
-                </li>
+                <img
+                  className='navbarLogo'
+                  src={`${light ? LogoWhiteMode : Logo}`}
+                  alt='Logo'
+                />
               </Link>
               <hr />
               <Link to='/mostViewed'>
@@ -121,14 +152,14 @@ const Navbar = () => {
               </Link>
             </ul>
           </div>
-          <div className='nvabar_mobile_manga_type'>
+          <div className='iconColor nvabar_mobile_manga_type'>
             <h3>Type :</h3>
             <br />
             <hr />
-            <ul className='navbar_mobile_manga_type'>
-              <li className='navbar_mobile_manga_item'>Manga</li>
-              <li className='navbar_mobile_manga_item'>Manwha</li>
-              <li className='navbar_mobile_manga_item'>Manhua</li>
+            <ul className='  navbar_mobile_manga_type'>
+              <li className=' navbar_mobile_manga_item'>Manga</li>
+              <li className=' navbar_mobile_manga_item'>Manwha</li>
+              <li className=' navbar_mobile_manga_item'>Manhua</li>
             </ul>
           </div>
         </div>

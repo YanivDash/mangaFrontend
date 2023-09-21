@@ -1,5 +1,4 @@
 .mangaDetails_container {
-  background-color: #053b50;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,10 +16,17 @@
     justify-content: flex-start;
     gap: 20px;
     align-items: flex-end;
+
+    img {
+      max-width: 220px;
+      min-width: 150px;
+      width: 100%;
+    }
+
     h1 {
       text-transform: uppercase;
       font-size: 2em;
-      color: #eeeeee;
+
       margin: 0;
     }
     .detailChapterBtn {
@@ -39,9 +45,15 @@
       }
     }
   }
+  @media screen and (max-width: 500px) {
+    .mangaDetails_header {
+      padding: 0 0 10px 0;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
   .detailChapters {
-    background-color: #352f44;
     flex-direction: column;
     display: flex;
     width: 100%;
@@ -50,10 +62,9 @@
       font-size: 2em;
       padding: 20px;
       padding: 30px 0 20px 15px;
-      background-color: #040d12;
     }
     .chapterList_cotainer {
-      width: 80vw;
+      width: 90%;
       padding: 35px 10px 15px 30px;
       margin: 3em auto 2em auto;
       border: 1px white solid;
@@ -63,7 +74,7 @@
       height: 70vh;
       overflow-y: scroll;
       gap: 10px;
-      background-color: #5c5470;
+
       h2 {
         margin: 10px;
         font-size: 1.5em;
@@ -73,10 +84,6 @@
         border: 3px solid #f0f0f0;
         padding: 10px 15px 10px 15px;
         width: 8em;
-        background-color: #213555;
-        &:hover {
-          background-color: #016a70;
-        }
       }
     }
   }

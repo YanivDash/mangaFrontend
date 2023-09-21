@@ -12,3 +12,10 @@
   flex-wrap: wrap;
   align-items: center;
 }
+
+.loadColapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 35% 10px 35%;
+}

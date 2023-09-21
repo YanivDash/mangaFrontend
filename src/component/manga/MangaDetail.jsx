@@ -23,50 +23,65 @@ const MangaDetail = () => {
     if (item.id == urlId) return item;
   });
 
+  const updateTotalChapter = async (totNumOFChapter, latestChapter) => {
+    axios.post(`${import.meta.env.VITE_BASE_URL}/updateManga`, {
+      id: urlId,
+      updateNum: totNumOFChapter,
+      updateChap: latestChapter,
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      if (mangaDetails) {
-        try {
-          axios
-            .post(`${import.meta.env.VITE_BASE_URL}/allChapters`, {
-              link: mangaDetails.websiteName,
-            })
-            .then((result) => {
-              dispatch(allChapLinksAdd(result.data.result));
-            });
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          throw error;
+      if (chapLinks.length <= 1) {
+        if (mangaDetails) {
+          try {
+            axios
+              .post(`${import.meta.env.VITE_BASE_URL}/allChapters`, {
+                link: mangaDetails.websiteName,
+              })
+              .then((result) => {
+                dispatch(allChapLinksAdd(result.data.result));
+              });
+          } catch (error) {
+            console.error("Error fetching data:", error);
+            throw error;
+          }
         }
       }
     };
 
     fetchData();
-  }, [mangaDetails, dispatch]);
+  }, [mangaDetails, chapLinks, dispatch]);
 
   if (mangaDetails) {
     const { mangaCover, mangaName, totalChapter, firstChapter, lastChapter } =
       mangaDetails;
     const chapters = [];
 
-    let allChapters = totalChapter;
+    if (totalChapter && chapLinks.length > 1) {
+      if (chapLinks.length > totalChapter) {
+        updateTotalChapter(chapLinks.length, chapLinks[0]);
+      }
+    }
+
+    let allChapters = chapLinks.length;
     while (allChapters >= 1) {
       chapters.push(allChapters);
       allChapters = allChapters - 1;
     }
-    console.log(chapLinks);
 
     return (
-      <div className='mangaDetails_container'>
-        <div className='mangaDetails_header'>
+      <div className='bgcolorOne mangaDetails_container'>
+        <div className=' mangaDetails_header'>
           <img src={mangaCover} alt='mangaCover' />
-          <div className='detailHeading'>
+          <div className=' detailHeading'>
             <h1>{mangaName}</h1>
-            <div className='detailChapterBtn'>
+            <div className=' detailChapterBtn'>
               <p
                 onClick={() => {
                   navigate(`/manga/${urlId}/${1}`, {
-                    state: { data: firstChapter },
+                    state: { data: firstChapter, chapIndex: totalChapter },
                   });
                 }}
               >
@@ -76,7 +91,7 @@ const MangaDetail = () => {
               <p
                 onClick={() => {
                   navigate(`/manga/${urlId}/${totalChapter}`, {
-                    state: { data: lastChapter },
+                    state: { data: lastChapter, chapIndex: 0 },
                   });
                 }}
               >
@@ -85,23 +100,28 @@ const MangaDetail = () => {
             </div>
           </div>
         </div>
-        <div className='detailChapters'>
-          <h1>Chapter List</h1>
-          <div className='chapterList_cotainer'>
-            {chapters.map((item, index) => {
-              return (
-                <h2
-                  key={index}
-                  onClick={() => {
-                    navigate(`/manga/${urlId}/${item}`, {
-                      state: { data: chapLinks[index] },
-                    });
-                  }}
-                >
-                  chapter {item}
-                </h2>
-              );
-            })}
+        <div className=' bgcolorThree detailChapters'>
+          <h1 className='bgcolorFour'>Chapter List</h1>
+          <div className='bgcolorTwo chapterList_cotainer'>
+            {chapLinks.length >= 1 ? (
+              chapters.map((item, index) => {
+                return (
+                  <h2
+                    className='bgcolorFour'
+                    key={index}
+                    onClick={() => {
+                      navigate(`/manga/${urlId}/${item}`, {
+                        state: { data: chapLinks[index], chapIndex: index },
+                      });
+                    }}
+                  >
+                    chapter {item}
+                  </h2>
+                );
+              })
+            ) : (
+              <h2>Loding... </h2>
+            )}
           </div>
         </div>
       </div>

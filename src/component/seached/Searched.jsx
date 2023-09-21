@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import MangaCard from "../home/MangaCard";
+import MangaCard from "../mangaCard/MangaCard";
 
 const Searched = () => {
   const location = useLocation();
@@ -8,9 +8,12 @@ const Searched = () => {
   const receivedData = location.state?.data;
   let data = mangas.allMangas;
   let searchedData = [];
-
+  let searchString = "";
   data.forEach((element) => {
-    let searchString = receivedData.toLowerCase();
+    if (receivedData) {
+      searchString = receivedData.toLowerCase();
+    }
+
     let dataString = element.mangaName.toLowerCase();
     if (dataString.includes(searchString)) {
       searchedData.push(element);
@@ -19,13 +22,20 @@ const Searched = () => {
 
   return (
     <div className='home_container'>
+      <div className='searchHeading'>
+        {searchedData.length > 0 && (
+          <h3>
+            showing result for <span>{receivedData}</span>
+          </h3>
+        )}
+      </div>
       <div className='home_manga_container'>
         {searchedData.length > 0 ? (
           searchedData.map((item, index) => {
             return <MangaCard key={index} data={item} />;
           })
         ) : (
-          <h3>nothing to show here</h3>
+          <h3>no manga found with KeyWord : {receivedData}</h3>
         )}
       </div>
     </div>

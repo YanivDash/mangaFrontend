@@ -1,12 +1,11 @@
 .chapter_container {
-  background-color: #2b2e4a;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 1rem;
   .allChapters {
     display: flex;
-    background-color: #2c3639;
+
     width: 100%;
     padding: 2em 0 2em 0;
     h1 {
@@ -22,13 +21,10 @@
     align-items: center;
     justify-content: space-around;
     padding: 15px 0 15px 0;
-    background-color: #576f72;
+
     width: 100%;
     button {
       font-size: 1.3em;
-      &:hover {
-        background-color: grey;
-      }
     }
   }
   .whenLoad {
@@ -40,8 +36,25 @@
     flex-direction: column;
     align-items: center;
     min-height: 600px;
-    img {
-      width: 100%;
+    .imgHolder {
+      span {
+        display: flex !important;
+      }
+    }
+
+    div {
+      height: fit-content;
+      .lazyChapterImg {
+        width: 100%;
+        height: auto;
+        display: flex;
+      }
+      .imgStillLOading {
+        height: 500px;
+      }
+      .zero {
+        display: none;
+      }
     }
   }
 }

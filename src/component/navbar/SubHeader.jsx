@@ -7,10 +7,26 @@ import { AiFillInstagram } from "react-icons/ai";
 import { TbBulbFilled } from "react-icons/tb";
 import { RiUserFollowFill } from "react-icons/ri";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { lightAdd } from "../../reducers/lightMode";
 
 const SubHeader = () => {
-  const [light, setLight] = useState(true);
+  const [light, setLight] = useState(false);
 
+  const dispatch = useDispatch();
+  const lightMode = useSelector((state) => state.light.light);
+  if (lightMode != light) setLight(lightMode);
+
+  if (light) {
+    if (document.body.className == "darkMode") {
+      document.body.className = "lightMode";
+    }
+  }
+  if (!light) {
+    if (document.body.className == "lightMode") {
+      document.body.className = "darkMode";
+    }
+  }
   return (
     <div className='subHeader_container'>
       <div className='subHeader_left_links'>
@@ -66,7 +82,7 @@ const SubHeader = () => {
         </a>
       </div>
       <div className='subHeader_Light_control'>
-        <p onClick={() => setLight(!light)}>
+        <p onClick={() => dispatch(lightAdd(!light))}>
           {" "}
           <span className='subHeader_icons'>
             <TbBulbFilled />{" "}
