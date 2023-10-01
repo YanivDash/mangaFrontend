@@ -14,6 +14,7 @@ const CreateManga = () => {
     mangaName: "",
     mangaCover: "",
     mangaClass: "",
+    mangaType: "manga",
   });
   const [response, setResponse] = useState(false);
   const [scrapeTest, setScrapeTest] = useState("");
@@ -25,7 +26,6 @@ const CreateManga = () => {
   }
 
   useEffect(() => {
-    console.log(decodeURIComponent(document.cookie));
     axios
       .post(
         `${import.meta.env.VITE_BASE_URL}/uploadManga`,
@@ -40,7 +40,6 @@ const CreateManga = () => {
           setAuth(true);
           setName(res.data.name);
         } else {
-          console.log(res);
           setAuth(false);
           setMessage(res.data.Error);
         }
@@ -65,7 +64,7 @@ const CreateManga = () => {
     setResponse(true);
     const result = await uploadManga(values);
     setResponse(false);
-    console.log(result);
+
     alert(result.message);
   };
 
@@ -73,11 +72,6 @@ const CreateManga = () => {
     <div>
       {auth ? (
         <div className='yesAuth_container'>
-          <div className='chapterClasses'>
-            <h2>chapterNumberHere</h2>
-            <p>.reading-content img</p>
-          </div>
-
           <form className='upload_form_container' onSubmit={handleSubmit}>
             <div className='upload_form_item'>
               <label htmlFor='websiteName'>
@@ -140,6 +134,23 @@ const CreateManga = () => {
                   setValues({ ...values, mangaClass: e.target.value })
                 }
               />
+            </div>
+            <div className='upload_form_item'>
+              <label htmlFor='mangaType'>
+                {" "}
+                <strong>mangaCover</strong>
+              </label>
+              <select
+                value={values.mangaType}
+                name='mangaType'
+                onChange={(e) =>
+                  setValues({ ...values, mangaType: e.target.value })
+                }
+              >
+                <option value='manga'>Manga</option>
+                <option value='manhwa'>Manhwa</option>
+                <option value='manhua'>Manhua</option>
+              </select>
             </div>
             <button type='submit'>
               {response ? "Submiting..." : "Submit Manga"}

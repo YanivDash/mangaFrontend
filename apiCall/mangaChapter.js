@@ -1,8 +1,6 @@
 import axios from "axios";
 
 const mangaChapter = (values) => {
-  console.log(values);
-
   return axios
     .post(`${import.meta.env.VITE_BASE_URL}/chapter`, values)
 

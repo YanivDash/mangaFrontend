@@ -61,7 +61,9 @@ const MangaDetail = () => {
 
     if (totalChapter && chapLinks.length > 1) {
       if (chapLinks.length > totalChapter) {
-        updateTotalChapter(chapLinks.length, chapLinks[0]);
+        if (chapLinks[chapLinks.length - 1] == firstChapter) {
+          updateTotalChapter(chapLinks.length, chapLinks[0]);
+        }
       }
     }
 
@@ -79,9 +81,10 @@ const MangaDetail = () => {
             <h1>{mangaName}</h1>
             <div className=' detailChapterBtn'>
               <p
+                className='pointer'
                 onClick={() => {
                   navigate(`/manga/${urlId}/${1}`, {
-                    state: { data: firstChapter, chapIndex: totalChapter },
+                    state: { data: firstChapter, chapIndex: totalChapter - 1 },
                   });
                 }}
               >
@@ -89,6 +92,7 @@ const MangaDetail = () => {
               </p>
 
               <p
+                className='pointer'
                 onClick={() => {
                   navigate(`/manga/${urlId}/${totalChapter}`, {
                     state: { data: lastChapter, chapIndex: 0 },
@@ -107,7 +111,7 @@ const MangaDetail = () => {
               chapters.map((item, index) => {
                 return (
                   <h2
-                    className='bgcolorFour'
+                    className='bgcolorFour pointer'
                     key={index}
                     onClick={() => {
                       navigate(`/manga/${urlId}/${item}`, {

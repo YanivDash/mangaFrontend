@@ -8,6 +8,8 @@ import {
   MostViewed,
   Login,
   AddCreateManga,
+  MangaType,
+  RUDOpp,
 } from "./component";
 import { Routes, Route } from "react-router-dom";
 import { fetchManga } from "../apiCall";
@@ -25,10 +27,12 @@ const App = () => {
     const fetchData = async () => {
       try {
         const manga = await fetchManga();
-        if (manga.data.result) {
-          dispatch(allMangaAdd(manga.data.result));
-        } else if (manga.data.error) {
-          console.log(manga.data.error);
+        if (manga || manga.length > 0) {
+          if (manga.data.result) {
+            dispatch(allMangaAdd(manga.data.result));
+          } else if (manga.data.error) {
+            console.log(manga.data.error);
+          }
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -47,10 +51,12 @@ const App = () => {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/mostViewed' element={<MostViewed />} />
         <Route exact path='/latest' element={<LatestManga />} />
+        <Route exact path='/mangaType/:type' element={<MangaType />} />
         <Route exact path='/searched' element={<Searched />} />
         <Route exact path='/manga/:id' element={<MangaDetail />} />
         <Route exact path='/manga/:id/:chapter' element={<MangaChapter />} />
         <Route exact path='/createManga' element={<CreateManga />} />
+        <Route exact path='/repostDelete' element={<RUDOpp />} />
         <Route exact path='/AddCreateManga' element={<AddCreateManga />} />
         <Route path='/login' element={<Login />}></Route>
       </Routes>

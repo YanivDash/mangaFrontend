@@ -72,8 +72,20 @@
   padding-left: 10px;
   margin-bottom: 1em;
 }
+.yesAuth_container .upload_form_container .upload_form_item select {
+  width: 80%;
+  font-size: 1em;
+  padding: 10px;
+  border: 0;
+  outline: none;
+}
+.yesAuth_container .upload_form_container .upload_form_item select option {
+  font-size: 1em;
+  padding: 5px;
+}
 .yesAuth_container .upload_form_container .upload_form_item input {
-  font-size: 0.7em;
+  font-size: 1em;
+  outline: none;
   background-color: white;
   color: black;
   padding: 10px;

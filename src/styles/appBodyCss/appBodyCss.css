@@ -27,6 +27,7 @@ body button:focus-visible {
 }
 
 .lightMode {
+  transition: all 0.3s ease-in;
   background-color: white;
   color: black;
 }
@@ -107,6 +108,7 @@ body button:focus-visible {
 }
 
 .darkMode {
+  transition: all 0.3s ease-in;
   background-color: black;
   color: white;
 }
@@ -171,4 +173,8 @@ body button:focus-visible {
 }
 .darkMode .bgcolorFour {
   background-color: #001c30;
+}
+
+.pointer {
+  cursor: pointer;
 }/*# sourceMappingURL=appBodyCss.css.map */

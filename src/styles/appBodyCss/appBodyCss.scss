@@ -30,6 +30,7 @@ body {
 
 // lightmode
 .lightMode {
+  transition: all 0.3s ease-in;
   background-color: white;
   color: black;
   a {
@@ -112,6 +113,7 @@ body {
 
 // dark mode
 .darkMode {
+  transition: all 0.3s ease-in;
   background-color: black;
   color: white;
   a {
@@ -179,4 +181,8 @@ body {
   .bgcolorFour {
     background-color: #001c30;
   }
+}
+
+.pointer {
+  cursor: pointer;
 }

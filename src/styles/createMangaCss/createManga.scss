@@ -73,9 +73,20 @@
       flex-direction: column;
       padding-left: 10px;
       margin-bottom: 1em;
+      select {
+        width: 80%;
+        font-size: 1em;
+        padding: 10px;
+        border: 0;
+        outline: none;
+        option {
+          font-size: 1em;
+          padding: 5px;
+        }
+      }
       input {
-        font-size: 0.7em;
-
+        font-size: 1em;
+        outline: none;
         background-color: white;
         color: black;
         padding: 10px;

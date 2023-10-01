@@ -1,0 +1,104 @@
+.RUDOpp_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.RUDoppCard_conatiner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  width: 100%;
+  padding-top: 15px;
+
+  .RUDoppCard_image {
+    padding-left: 10px;
+    max-width: 110px;
+    width: 100px;
+    margin: 0 10px 10px 0;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .RUDoppCard_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 10px;
+    gap: 15px;
+    .RUDoppCard_website {
+      font-size: 0.9em;
+      a {
+        &:hover {
+          color: rgb(163, 67, 253);
+        }
+      }
+    }
+  }
+
+  .RUDoppCard_buttons {
+    font-size: 0.9em;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 15px 0;
+
+    .RUDoppCard_delete {
+      button {
+        background-color: red;
+        color: white;
+      }
+    }
+    .RUDoppCard_repost {
+      button {
+        background-color: rgb(0, 255, 255);
+        color: black;
+      }
+    }
+    .RUDoppCard_update {
+      button {
+        background-color: rgb(174, 255, 53);
+        color: black;
+      }
+    }
+  }
+
+  .RUDoppCard_update_container {
+    padding: 20px 0 20px 0;
+    width: 100%;
+    .RUDoppCard_form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 10px;
+      gap: 15px;
+      .RUDoppCard_form_item {
+        display: flex;
+        flex-direction: column;
+        a {
+          &:hover {
+            color: rgb(163, 67, 253);
+          }
+        }
+        width: 100%;
+        input {
+          margin-top: 10px;
+          width: 90%;
+          padding: 7px 0 7px 10px;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}

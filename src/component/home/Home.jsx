@@ -16,7 +16,7 @@ const Home = () => {
   }
 
   return (
-    <div className='home_container'>
+    <div>
       <Banner />
       <div className='home_manga_container'>
         {loading ? (
@@ -29,23 +29,18 @@ const Home = () => {
           <h3>nothing to show here</h3>
         )}
       </div>
-      <div className='bgcolorTwo loadColapse'>
+      <div
+        onClick={() =>
+          currentLoadManga <= data.length
+            ? setcurrentLoadManga(currentLoadManga + 15)
+            : setcurrentLoadManga(20)
+        }
+        className='bgcolorTwo pointer loadColapse'
+      >
         {currentLoadManga <= data.length ? (
-          <h2
-            onClick={() => {
-              setcurrentLoadManga(currentLoadManga + 15);
-            }}
-          >
-            Load More
-          </h2>
+          <h2>Load More</h2>
         ) : (
-          <h2
-            onClick={() => {
-              setcurrentLoadManga(20);
-            }}
-          >
-            Collapse Loaded
-          </h2>
+          <h2>Collapse Loaded</h2>
         )}
       </div>
     </div>

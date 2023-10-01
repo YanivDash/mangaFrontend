@@ -48,13 +48,22 @@
         width: 100%;
         height: auto;
         display: flex;
+        margin: 0;
       }
       .imgStillLOading {
-        height: 500px;
+        margin-bottom: 25vh;
       }
       .zero {
         display: none;
       }
     }
+  }
+  .toTopIcon {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    color: #713abe;
+    font-size: 2em;
+    scroll-behavior: smooth;
   }
 }

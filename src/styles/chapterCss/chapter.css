@@ -46,10 +46,19 @@
   width: 100%;
   height: auto;
   display: flex;
+  margin: 0;
 }
 .chapter_container .chapterImg_cotainer div .imgStillLOading {
-  height: 500px;
+  margin-bottom: 25vh;
 }
 .chapter_container .chapterImg_cotainer div .zero {
   display: none;
+}
+.chapter_container .toTopIcon {
+  position: fixed;
+  bottom: 30px;
+  right: 25px;
+  color: #713abe;
+  font-size: 2em;
+  scroll-behavior: smooth;
 }/*# sourceMappingURL=chapter.css.map */

@@ -138,6 +138,7 @@ const Navbar = () => {
               <br />
               <Link to='/'>
                 <img
+                  onClick={() => setMobileMenu(false)}
                   className='navbarLogo'
                   src={`${light ? LogoWhiteMode : Logo}`}
                   alt='Logo'
@@ -145,9 +146,14 @@ const Navbar = () => {
               </Link>
               <hr />
               <Link to='/mostViewed'>
-                <li className='navbar_mobile_manga_item'>Most-Viewed</li>
+                <li
+                  onClick={() => setMobileMenu(false)}
+                  className='navbar_mobile_manga_item'
+                >
+                  Most-Viewed
+                </li>
               </Link>
-              <Link to='/latest'>
+              <Link onClick={() => setMobileMenu(false)} to='/latest'>
                 <li className='navbar_mobile_manga_item'>Latest</li>
               </Link>
             </ul>
@@ -157,9 +163,30 @@ const Navbar = () => {
             <br />
             <hr />
             <ul className='  navbar_mobile_manga_type'>
-              <li className=' navbar_mobile_manga_item'>Manga</li>
-              <li className=' navbar_mobile_manga_item'>Manwha</li>
-              <li className=' navbar_mobile_manga_item'>Manhua</li>
+              <Link to='/mangaType/manga'>
+                <li
+                  onClick={() => setMobileMenu(false)}
+                  className=' navbar_mobile_manga_item'
+                >
+                  Manga
+                </li>
+              </Link>
+              <Link to='/mangaType/manhwa'>
+                <li
+                  onClick={() => setMobileMenu(false)}
+                  className=' navbar_mobile_manga_item'
+                >
+                  Manwha
+                </li>
+              </Link>
+              <Link to='/mangaType/manhua'>
+                <li
+                  onClick={() => setMobileMenu(false)}
+                  className=' navbar_mobile_manga_item'
+                >
+                  Manhua
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

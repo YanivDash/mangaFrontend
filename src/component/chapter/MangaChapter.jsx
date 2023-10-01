@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import mangaChapter from "../../../apiCall/mangaChapter";
@@ -10,6 +11,26 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { allChapLinksAdd } from "../../reducers/allChapLinks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BsFillArrowUpCircleFill } from "react-icons/bs";
+
+const ImageHolder = (props) => {
+  const [imgError, setImgError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  return (
+    <LazyLoadImage
+      effect='blur'
+      src={props.source}
+      alt='chapter image'
+      className={` lazyChapterImg ${
+        props.indexNum === 0 && imgError ? "zero" : ""
+      } ${imageLoaded ? "noneed" : "imgStillLOading"}`}
+      onError={() => setImgError(true)}
+      onLoad={() => setImageLoaded(true)}
+      threshold={300}
+    />
+  );
+};
 
 const MangaChapter = () => {
   const location = useLocation();
@@ -20,8 +41,8 @@ const MangaChapter = () => {
   let { id, chapter } = urlParams;
 
   const [loading, setLoading] = useState(false);
-  const [imgError, setImgError] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  // const [imgError, setImgError] = useState(false);
+  // const [imageLoaded, setImageLoaded] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,6 +71,11 @@ const MangaChapter = () => {
   });
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
     if ((mangaDetails && chapLinks.length <= 0) || !chapterLink) {
       if (webLink) {
         try {
@@ -154,7 +180,7 @@ const MangaChapter = () => {
             chapData.chapterImg.map((el, index) => {
               return (
                 <div key={index} className='imgHolder'>
-                  <LazyLoadImage
+                  {/* <LazyLoadImage
                     effect='blur'
                     src={el}
                     alt='chapter image'
@@ -163,7 +189,8 @@ const MangaChapter = () => {
                     } ${imageLoaded ? "lazyChapterImg" : "imgStillLOading"}`}
                     onError={() => setImgError("zero")}
                     onLoad={() => setImageLoaded(true)}
-                  />
+                  /> */}
+                  <ImageHolder source={el} indexNum={index} />
                 </div>
               );
             })
@@ -210,6 +237,15 @@ const MangaChapter = () => {
           </button>
         )}
       </div>
+      <BsFillArrowUpCircleFill
+        className={`${"toTopIcon"}`}
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }}
+      />
     </div>
   );
 };

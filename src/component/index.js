@@ -7,6 +7,8 @@ import CreateManga from "./upload/CreateManga";
 import MostViewed from "./mostViewed/MostViewed";
 import Login from "./upload/Login";
 import AddCreateManga from "./advanceUpload/AddCreateManga";
+import MangaType from "./mangaType/MangaType";
+import RUDOpp from "./rudopp/RUDOpp";
 
 export {
   Home,
@@ -18,4 +20,6 @@ export {
   MostViewed,
   Login,
   AddCreateManga,
+  MangaType,
+  RUDOpp,
 };

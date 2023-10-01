@@ -50,7 +50,7 @@
 @media screen and (max-width: 500px) {
   .manga_card_container {
     width: 120px;
-    font-size: 0.7em;
+    font-size: 0.8em;
     .btnChapter {
       font-size: 1.1em;
     }
@@ -60,6 +60,10 @@
 @media screen and (max-width: 400px) {
   .manga_card_container {
     width: 44%;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
+}
+
+.card_noDispaly {
+  display: none;
 }

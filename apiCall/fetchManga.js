@@ -5,7 +5,7 @@ const fetchManga = () => {
     .get(`${import.meta.env.VITE_BASE_URL}/allManga`)
 
     .then((res) => res)
-    .catch((err) => console.log(err.err));
+    .catch((err) => console.log(err));
 };
 
 export default fetchManga;
