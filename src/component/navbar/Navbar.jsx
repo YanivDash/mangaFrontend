@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbarCss/navbar.css";
 import { RiLightbulbFlashLine, RiLightbulbFlashFill } from "react-icons/ri";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-import { Logo, LogoWhiteMode } from "../../assets";
+import { Logo, LogoWhiteMode, LogoSmall } from "../../assets";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
@@ -35,6 +35,13 @@ const Navbar = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    navigate("/searched", { state: { data: input } });
+  };
+
+  const handleMobileSubmit = (e) => {
+    e.preventDefault();
+    setSearch(!search);
     navigate("/searched", { state: { data: input } });
   };
 
@@ -43,14 +50,27 @@ const Navbar = () => {
       {" "}
       <div className='navbar_links_container'>
         <div className='navbar_manga'>
-          <IoIosArrowDroprightCircle
-            onClick={() => setMobileMenu(!mobileMenu)}
-            className={
-              mobileMenu
-                ? "navbar_icon_inverted  navbar_menu_slide navbar_icons"
-                : "navbar_icon_simple  navbar_menu_slide navbar_icons"
-            }
-          />
+          <div className='left_icons_logo'>
+            <IoIosArrowDroprightCircle
+              onClick={() => setMobileMenu(!mobileMenu)}
+              className={
+                mobileMenu
+                  ? "navbar_icon_inverted  navbar_menu_slide navbar_icons"
+                  : "navbar_icon_simple  navbar_menu_slide navbar_icons"
+              }
+            />
+            <Link to='/'>
+              <img
+                src={LogoSmall}
+                alt='Logo'
+                className={
+                  mobileMenu
+                    ? "samll_logo_img  navbar_menu_slide navbar_icons"
+                    : "samll_logo_img  navbar_menu_slide navbar_icons"
+                }
+              />
+            </Link>
+          </div>
           <ul className='navbar_manga_lists'>
             <Link to='/'>
               <img
@@ -113,7 +133,7 @@ const Navbar = () => {
         </div>
       </div>
       {search ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleMobileSubmit}>
           <input
             autoFocus
             required
@@ -159,8 +179,6 @@ const Navbar = () => {
             </ul>
           </div>
           <div className='iconColor nvabar_mobile_manga_type'>
-            <h3>Type :</h3>
-            <br />
             <hr />
             <ul className='  navbar_mobile_manga_type'>
               <Link to='/mangaType/manga'>

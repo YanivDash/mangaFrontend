@@ -1,0 +1,11 @@
+.serachNotFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchNotFoundImg {
+  max-width: 480px;
+  width: 100%;
+}

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -13,11 +15,11 @@ const Banner = () => {
   const [currentBanner, setCurrentBanner] = useState(0);
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const mangas = useSelector((state) => state.allManga);
 
   let data = mangas.allMangas;
-  if (!data) setLoading(true);
+
   const sortedData = [...data];
 
   sortedData.sort((a, b) => b.totalViews - a.totalViews);
@@ -37,6 +39,8 @@ const Banner = () => {
   }
 
   useEffect(() => {
+    if (data.length >= 1) setLoading(false);
+
     const autoSlide = () => {
       setCurrentBanner((prevBanner) => {
         if (prevBanner >= 6) {
@@ -51,7 +55,7 @@ const Banner = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [currentBanner]);
+  }, [currentBanner, data]);
   const handlers = useSwipeable({
     onSwiped: () => {
       if (currentBanner >= 6) {
@@ -73,7 +77,7 @@ const Banner = () => {
   return (
     <div>
       {loading ? (
-        <h3>Loading...</h3>
+        <Skeleton className='banner_container' />
       ) : (
         <div {...handlers} key={currentBanner} className='banner_container'>
           <div className='banner_blur_img'>

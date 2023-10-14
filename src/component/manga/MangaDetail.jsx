@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 import "../../styles/mangaDetailsCss/mangaDetails.css";
 import { allChapLinksAdd } from "../../reducers/allChapLinks";
 import axios from "axios";
@@ -13,7 +14,7 @@ const MangaDetail = () => {
   let urlId = urlParams.id;
 
   const dispatch = useDispatch();
-  window.scroll(0, 0);
+
   const mangas = useSelector((state) => state.allManga);
   const chapLinks = useSelector((state) => state.allChapLinks.allChapLinks);
 
@@ -34,6 +35,7 @@ const MangaDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (chapLinks.length <= 1) {
+        window.scroll(0, 0);
         if (mangaDetails) {
           try {
             axios
@@ -124,7 +126,9 @@ const MangaDetail = () => {
                 );
               })
             ) : (
-              <h2>Loding... </h2>
+              <div className=' skeleton_chapterList_cotainer'>
+                <Skeleton width={1400} height={400} />
+              </div>
             )}
           </div>
         </div>
@@ -132,7 +136,26 @@ const MangaDetail = () => {
     );
   }
 
-  return <h1>hello</h1>;
+  return (
+    <div>
+      <div className='skull_manga_details'>
+        <Skeleton height={250} width={200} />
+        <div>
+          <h1>{<Skeleton width={"70%"} height={45} />}</h1>
+          <div>
+            <p>{<Skeleton width={"40%"} height={35} />}</p>
+            <p>{<Skeleton width={"40%"} height={35} />}</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1>{<Skeleton width={"100%"} height={120} />}</h1>
+        <div className=' skeleton_chapterList_cotainer'>
+          <Skeleton width={"100%"} height={400} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MangaDetail;

@@ -7,8 +7,11 @@ import { allChapLinksAdd } from "../../reducers/allChapLinks";
 import { addChapterImg } from "../../reducers/chapterImgReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Skeleton from "react-loading-skeleton";
 const ExMangaCard = (manga) => {
   const [loaded, setLoaded] = useState("");
+  const [onDidLoad, setOnDidLoad] = useState(false);
 
   const {
     id,
@@ -35,12 +38,27 @@ const ExMangaCard = (manga) => {
       >
         <div className=' cover_name_conatiner'>
           <div className='mangaCardImageContainer'>
-            <img
+            <LazyLoadImage
+              effect='blur'
+              src={mangaCover}
+              alt='chapter image'
+              className={`manga_cover ${onDidLoad ? "" : "noCardDispalay"}`}
+              onError={() => setLoaded("card_noDispaly")}
+              onLoad={() => setOnDidLoad(true)}
+              threshold={300}
+            />
+            <Skeleton
+              className={`manga_cover_skeleton ${
+                onDidLoad ? "noCardDispalay" : ""
+              }`}
+            />
+
+            {/* <img
               src={mangaCover}
               alt={mangaName}
               className='manga_cover'
               onError={() => setLoaded("card_noDispaly")}
-            />
+            /> */}
           </div>
           <div className='manga_name'>
             {mangaName.length > 44 ? `${mangaName.slice(0, 44)}...` : mangaName}

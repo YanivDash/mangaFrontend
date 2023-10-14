@@ -186,3 +186,31 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+.homeSkeletonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .homeSkeleton {
+    height: 210px;
+    width: 160px;
+    margin: 0.5em;
+  }
+
+  @media screen and (max-width: 500px) {
+    .homeSkeleton {
+      width: 120px;
+      height: 180px;
+      max-height: 210px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .homeSkeleton {
+      width: 40vw;
+      height: 180px;
+      max-height: 210px;
+    }
+  }
+}

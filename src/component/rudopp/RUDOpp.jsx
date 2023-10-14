@@ -195,7 +195,8 @@ const RUDOpp = () => {
   let data = mangas.allMangas;
   if (!data) setLoading(true);
   if (data.length > 0) {
-    loadManga = data.slice(0, currentLoadManga);
+    let reversedData = [...data].reverse();
+    loadManga = reversedData.slice(0, currentLoadManga);
   }
   useEffect(() => {
     axios

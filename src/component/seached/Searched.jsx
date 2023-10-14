@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MangaCard from "../mangaCard/MangaCard";
+import { NotFound } from "../../assets";
+import "./search.css";
 
 const Searched = () => {
   const location = useLocation();
@@ -35,7 +37,12 @@ const Searched = () => {
             return <MangaCard key={index} data={item} />;
           })
         ) : (
-          <h3>no manga found with KeyWord : {receivedData}</h3>
+          <div className='serachNotFound' style={{ display: "flex" }}>
+            <h2>
+              Search result for: <i>{receivedData}</i>{" "}
+            </h2>
+            <img src={NotFound} alt='search' className='searchNotFoundImg' />
+          </div>
         )}
       </div>
     </div>

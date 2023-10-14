@@ -9,13 +9,14 @@ const AddCreateManga = () => {
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
   const [values, setValues] = useState({
-    websiteName: "",
-    mangaName: "",
-    mangaCover: "",
-    mangaLink: "",
+    url: "",
+    blockClass: "",
+    nextSelecter: "",
+    mangaType: "",
     mangaClass: "",
   });
   const [response, setResponse] = useState(false);
+  const [replicate, setReplicate] = useState(false);
   const [scrapeTest, setScrapeTest] = useState("");
 
   const location = useLocation();
@@ -72,6 +73,27 @@ const AddCreateManga = () => {
     alert(result.message);
   };
 
+  const handleReplicate = async () => {
+    setReplicate(true);
+    const result = await axios.put(
+      `${import.meta.env.VITE_ADV_BASE_URL}/replicateAll`,
+      values
+    );
+    setReplicate(false);
+    alert(result.message);
+  };
+
+  const handleDeleteDuplicate = async () => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_ADV_BASE_URL}/deleteDuplicate`
+      );
+      console.log("deleted dupli");
+    } catch (error) {
+      alert("could not");
+    }
+  };
+
   return (
     <div>
       {auth ? (
@@ -83,64 +105,62 @@ const AddCreateManga = () => {
 
           <form className='upload_form_container' onSubmit={handleSubmit}>
             <div className='upload_form_item'>
-              <label htmlFor='websiteName'>
+              <label htmlFor='url'>
                 {" "}
-                <strong>websiteName</strong>
+                <strong>url</strong>
               </label>
               <input
                 required
                 type='text'
-                placeholder='Enter websiteName'
-                name='websiteName'
+                placeholder='Enter url'
+                name='url'
+                onChange={(e) => setValues({ ...values, url: e.target.value })}
+              />
+            </div>
+
+            <div className='upload_form_item'>
+              <label htmlFor='blockClass'>
+                {" "}
+                <strong>blockClass</strong>
+              </label>
+              <input
+                required
+                type='text'
+                placeholder='Enter blockClass'
+                name='blockClass'
                 onChange={(e) =>
-                  setValues({ ...values, websiteName: e.target.value })
+                  setValues({ ...values, blockClass: e.target.value })
                 }
               />
             </div>
 
             <div className='upload_form_item'>
-              <label htmlFor='mangaName'>
+              <label htmlFor='nextSelecter'>
                 {" "}
-                <strong>mangaName</strong>
+                <strong>nextSelecter</strong>
               </label>
               <input
                 required
                 type='text'
-                placeholder='Enter mangaName'
-                name='mangaName'
+                placeholder='Enter nextSelecter'
+                name='nextSelecter'
                 onChange={(e) =>
-                  setValues({ ...values, mangaName: e.target.value })
-                }
-              />
-            </div>
-
-            <div className='upload_form_item'>
-              <label htmlFor='mangaCover'>
-                {" "}
-                <strong>mangaCover</strong>
-              </label>
-              <input
-                required
-                type='text'
-                placeholder='Enter mangaCover'
-                name='mangaCover'
-                onChange={(e) =>
-                  setValues({ ...values, mangaCover: e.target.value })
+                  setValues({ ...values, nextSelecter: e.target.value })
                 }
               />
             </div>
             <div className='upload_form_item'>
-              <label htmlFor='mangaLink'>
+              <label htmlFor='mangaType'>
                 {" "}
-                <strong>mangaLink</strong>
+                <strong>mangaType</strong>
               </label>
               <input
                 required
                 type='text'
-                placeholder='Enter mangaLink'
-                name='mangaLink'
+                placeholder='Enter mangaType'
+                name='mangaType'
                 onChange={(e) =>
-                  setValues({ ...values, mangaLink: e.target.value })
+                  setValues({ ...values, mangaType: e.target.value })
                 }
               />
             </div>
@@ -162,7 +182,12 @@ const AddCreateManga = () => {
             <button type='submit'>
               {response ? "Submiting..." : "Submit Manga"}
             </button>
+            <button onClick={handleReplicate}>
+              {replicate ? "Replicating..." : "Replicate"}
+            </button>
+            <button onClick={handleDeleteDuplicate}>Delete Duplicate</button>
           </form>
+
           <div className='authAdmin_container'>
             <h3>
               Admin Name : <span>{name}</span>{" "}

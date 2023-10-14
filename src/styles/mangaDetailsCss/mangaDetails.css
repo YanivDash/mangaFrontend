@@ -17,7 +17,8 @@
   gap: 20px;
   align-items: flex-end;
 }
-.mangaDetails_container .mangaDetails_header img {
+.mangaDetails_container .mangaDetails_header img,
+.mangaDetails_container .mangaDetails_header .mangaDetailSkeletonIng {
   max-width: 220px;
   min-width: 150px;
   width: 100%;
@@ -86,5 +87,15 @@
 @media screen and (max-width: 500px) {
   .mangaDetails_container {
     font-size: 0.7em;
+  }
+}
+.skull_manga_details {
+  padding-left: 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .skull_manga_details {
+    padding-left: 0;
+    text-align: center;
   }
 }/*# sourceMappingURL=mangaDetails.css.map */

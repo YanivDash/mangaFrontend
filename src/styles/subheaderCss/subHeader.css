@@ -39,6 +39,9 @@
   justify-content: center;
   font-size: 21px;
 }
+.subHeader_container a p {
+  color: #fff !important;
+}
 .subHeader_container a :hover {
   color: aqua;
 }

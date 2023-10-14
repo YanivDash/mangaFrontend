@@ -1,13 +1,18 @@
 import MangaCard from "../mangaCard/MangaCard";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const LatestManga = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentLoadManga, setcurrentLoadManga] = useState(20);
   const mangas = useSelector((state) => state.allManga);
   let data = mangas.allMangas;
-  if (!data) setLoading(true);
+
+  useEffect(() => {
+    if (data.length >= 1) setLoading(false);
+  }, [data]);
+
   const sortedData = [...data];
   let loadManga = [];
   // Sort the new array based on the "id" property
@@ -28,7 +33,28 @@ const LatestManga = () => {
       <h2>Latest</h2>
       <div className='home_manga_container'>
         {loading ? (
-          <h3>Loading...</h3>
+          <div className='homeSkeletonContainer'>
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+            <Skeleton className='homeSkeleton' />
+          </div>
         ) : loadManga.length > 0 ? (
           loadManga.map((item, index) => {
             return <MangaCard key={index} data={item} />;

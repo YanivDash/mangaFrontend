@@ -18,6 +18,7 @@
 }
 .manga_card_container .cover_name_conatiner .mangaCardImageContainer {
   overflow: hidden;
+  height: 210px;
   max-height: 210px;
 }
 .manga_card_container .cover_name_conatiner .mangaCardImageContainer img {
@@ -25,6 +26,14 @@
   z-index: -1;
   transition: 0.3s ease-in-out;
   display: block;
+}
+.manga_card_container .cover_name_conatiner .mangaCardImageContainer .manga_cover_skeleton {
+  width: 160px;
+  height: 210px;
+  max-height: 210px;
+}
+.manga_card_container .cover_name_conatiner .mangaCardImageContainer .noCardDispalay {
+  display: none;
 }
 .manga_card_container .cover_name_conatiner .manga_name {
   padding-left: 5px;
@@ -47,6 +56,14 @@
     width: 120px;
     font-size: 0.8em;
   }
+  .manga_card_container .mangaCardImageContainer {
+    height: 180px;
+  }
+  .manga_card_container .mangaCardImageContainer .manga_cover_skeleton {
+    width: 120px;
+    height: 180px;
+    max-height: 210px;
+  }
   .manga_card_container .btnChapter {
     font-size: 1.1em;
   }
@@ -55,6 +72,14 @@
   .manga_card_container {
     width: 44%;
     font-size: 0.8em;
+  }
+  .manga_card_container .mangaCardImageContainer {
+    height: auto;
+  }
+  .manga_card_container .mangaCardImageContainer .manga_cover_skeleton {
+    width: 44%;
+    height: 180px;
+    max-height: 100%;
   }
 }
 .card_noDispaly {

@@ -19,13 +19,21 @@
     }
     .mangaCardImageContainer {
       overflow: hidden;
-
+      height: 210px;
       max-height: 210px;
       img {
         width: 100%;
         z-index: -1;
         transition: 0.3s ease-in-out;
         display: block;
+      }
+      .manga_cover_skeleton {
+        width: 160px;
+        height: 210px;
+        max-height: 210px;
+      }
+      .noCardDispalay {
+        display: none;
       }
     }
 
@@ -51,6 +59,14 @@
   .manga_card_container {
     width: 120px;
     font-size: 0.8em;
+    .mangaCardImageContainer {
+      height: 180px;
+      .manga_cover_skeleton {
+        width: 120px;
+        height: 180px;
+        max-height: 210px;
+      }
+    }
     .btnChapter {
       font-size: 1.1em;
     }
@@ -61,6 +77,14 @@
   .manga_card_container {
     width: 44%;
     font-size: 0.8em;
+    .mangaCardImageContainer {
+      height: auto;
+      .manga_cover_skeleton {
+        width: 44%;
+        height: 180px;
+        max-height: 100%;
+      }
+    }
   }
 }
 

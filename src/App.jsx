@@ -1,15 +1,15 @@
+import { lazy } from "react";
+import { SkeletonTheme } from "react-loading-skeleton";
 import {
   Home,
-  CreateManga,
   MangaDetail,
   Navbar,
-  SubHeader,
   MangaChapter,
   MostViewed,
+  SubHeader,
   Login,
-  AddCreateManga,
   MangaType,
-  RUDOpp,
+  Footer,
 } from "./component";
 import { Routes, Route } from "react-router-dom";
 import { fetchManga } from "../apiCall";
@@ -19,6 +19,14 @@ import { allMangaAdd } from "./reducers/allMangaReducer";
 import "./styles/appBodyCss/appBodyCss.css";
 import LatestManga from "./component/latest/LatestManga";
 import Searched from "./component/seached/Searched";
+
+// lazy imports
+const CreateManga = lazy(() => import("./component/upload/CreateManga"));
+// const Login = lazy(() => import("./component/upload/Login"));
+const AddCreateManga = lazy(() =>
+  import("./component/advanceUpload/AddCreateManga")
+);
+const RUDOpp = lazy(() => import("./component/rudopp/RUDOpp"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,21 +53,24 @@ const App = () => {
 
   return (
     <div className='appBodyContainer'>
-      <SubHeader />
-      <Navbar />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/mostViewed' element={<MostViewed />} />
-        <Route exact path='/latest' element={<LatestManga />} />
-        <Route exact path='/mangaType/:type' element={<MangaType />} />
-        <Route exact path='/searched' element={<Searched />} />
-        <Route exact path='/manga/:id' element={<MangaDetail />} />
-        <Route exact path='/manga/:id/:chapter' element={<MangaChapter />} />
-        <Route exact path='/createManga' element={<CreateManga />} />
-        <Route exact path='/repostDelete' element={<RUDOpp />} />
-        <Route exact path='/AddCreateManga' element={<AddCreateManga />} />
-        <Route path='/login' element={<Login />}></Route>
-      </Routes>
+      <SkeletonTheme baseColor='#202020' highlightColor='#444'>
+        <SubHeader />
+        <Navbar />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/mostViewed' element={<MostViewed />} />
+          <Route exact path='/latest' element={<LatestManga />} />
+          <Route exact path='/mangaType/:type' element={<MangaType />} />
+          <Route exact path='/searched' element={<Searched />} />
+          <Route exact path='/manga/:id' element={<MangaDetail />} />
+          <Route exact path='/manga/:id/:chapter' element={<MangaChapter />} />
+          <Route exact path='/createManga' element={<CreateManga />} />
+          <Route exact path='/repostDelete' element={<RUDOpp />} />
+          <Route exact path='/AddCreateManga' element={<AddCreateManga />} />
+          <Route path='/login' element={<Login />}></Route>
+        </Routes>
+        <Footer />
+      </SkeletonTheme>
     </div>
   );
 };
