@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import "../../styles/mangaCardCss/mangaCard.css";
 import incrementView from "../../../apiCall/incrementView";
+import deleteManga from "../../../apiCall/deleteManga";
 import { useDispatch } from "react-redux";
 import { allChapLinksAdd } from "../../reducers/allChapLinks";
 import { addChapterImg } from "../../reducers/chapterImgReducer";
@@ -36,14 +37,17 @@ const ExMangaCard = (manga) => {
           incrementView({ id: id, totalViews: totalViews });
         }}
       >
-        <div className=' cover_name_conatiner'>
-          <div className='mangaCardImageContainer'>
+        <div className=" cover_name_conatiner">
+          <div className="mangaCardImageContainer">
             <LazyLoadImage
-              effect='blur'
+              effect="blur"
               src={mangaCover}
-              alt='chapter image'
+              alt="chapter image"
               className={`manga_cover ${onDidLoad ? "" : "noCardDispalay"}`}
-              onError={() => setLoaded("card_noDispaly")}
+              onError={() => {
+                deleteManga(id);
+                setLoaded("card_noDispaly");
+              }}
               onLoad={() => setOnDidLoad(true)}
               threshold={300}
             />
@@ -60,7 +64,7 @@ const ExMangaCard = (manga) => {
               onError={() => setLoaded("card_noDispaly")}
             /> */}
           </div>
-          <div className='manga_name'>
+          <div className="manga_name">
             {mangaName.length > 44 ? `${mangaName.slice(0, 44)}...` : mangaName}
           </div>
         </div>
@@ -72,7 +76,7 @@ const ExMangaCard = (manga) => {
             state: { data: lastChapter, chapIndex: 0 },
           });
         }}
-        className='bgcolorThree btnChapter'
+        className="bgcolorThree btnChapter"
       >
         chapter {totalChapter}
       </button>
@@ -83,7 +87,7 @@ const ExMangaCard = (manga) => {
             state: { data: firstChapter, chapIndex: totalChapter - 1 },
           });
         }}
-        className='bgcolorThree btnChapter'
+        className="bgcolorThree btnChapter"
       >
         Read First
       </button>

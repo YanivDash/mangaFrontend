@@ -6,14 +6,32 @@
 }
 .chapter_container .allChapters {
   display: flex;
+  position: relative;
   width: 100%;
   padding: 2em 0 2em 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.chapter_container .allChapters h1 {
-  margin-left: 1em;
+.chapter_container .allChapters h2 {
   font-size: 2em;
-  text-decoration: underline;
+  color: white;
+  position: relative;
   text-transform: uppercase;
+  z-index: 1;
+}
+.chapter_container .allChapters h3 {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+.chapter_container .allChapters h3 span {
+  color: greenyellow;
+}
+@media (max-width: 500px) {
+  .chapter_container .allChapters h2 {
+    font-size: 1.2em;
+  }
 }
 .chapter_container .nextPrevBtn {
   display: flex;
@@ -37,6 +55,12 @@
 }
 .chapter_container .chapterImg_cotainer .imgHolder span {
   display: flex !important;
+}
+.chapter_container .chapterImg_cotainer .imgHolder .LoaderIs {
+  position: absolute;
+}
+.chapter_container .chapterImg_cotainer .imgHolder .loaderNoDisplay {
+  display: none;
 }
 .chapter_container .chapterImg_cotainer div {
   height: -moz-fit-content;

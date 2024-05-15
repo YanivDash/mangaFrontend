@@ -7,7 +7,7 @@ const RUDoppCard = (manga) => {
   const [update, setUpdate] = useState(false);
   const [response, setResponse] = useState(false);
   const [deleteResponse, setDeleteResponse] = useState(false);
-  const [repostResponse, setRepostResponse] = useState(false);
+  // const [repostResponse, setRepostResponse] = useState(false);
   const {
     id,
     websiteName,
@@ -46,33 +46,33 @@ const RUDoppCard = (manga) => {
     }
   };
 
-  const handleRepost = () => {
-    setRepostResponse(true);
-    try {
-      axios
-        .post(`${import.meta.env.VITE_BASE_URL}/repost`, {
-          websiteName: websiteName,
-          mangaName: mangaName,
-          mangaCover: mangaCover,
-          mangaClass: mangaClass,
-          mangaType: mangaType,
-        })
-        .then((response) => {
-          console.log("reposted succesfully:", response.data);
-          setRepostResponse(false);
-          alert("reposted manga successfully");
-        })
-        .catch((error) => {
-          console.error("Error reposting resource:", error);
-          setRepostResponse(false);
-          alert("error while reposting");
-        });
-    } catch (error) {
-      console.log(error);
-      setRepostResponse(false);
-      return;
-    }
-  };
+  // const handleRepost = () => {
+  //   setRepostResponse(true);
+  //   try {
+  //     axios
+  //       .post(`${import.meta.env.VITE_BASE_URL}/repost`, {
+  //         websiteName: websiteName,
+  //         mangaName: mangaName,
+  //         mangaCover: mangaCover,
+  //         mangaClass: mangaClass,
+  //         mangaType: mangaType,
+  //       })
+  //       .then((response) => {
+  //         console.log("reposted succesfully:", response.data);
+  //         setRepostResponse(false);
+  //         alert("reposted manga successfully");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error reposting resource:", error);
+  //         setRepostResponse(false);
+  //         alert("error while reposting");
+  //       });
+  //   } catch (error) {
+  //     console.log(error);
+  //     setRepostResponse(false);
+  //     return;
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,82 +98,78 @@ const RUDoppCard = (manga) => {
   };
 
   return (
-    <div className=' bgcolorThree RUDoppCard_conatiner'>
-      <div className='RUDoppCard_image'>
-        <img src={mangaCover} alt='cover' />
+    <div className=" bgcolorThree RUDoppCard_conatiner">
+      <div className="RUDoppCard_image">
+        <img src={mangaCover} alt="cover" />
       </div>
-      <div className='RUDoppCard_header'>
-        <div className='RUDoppCard_website'>
-          <a href={websiteName} target='_blank' rel='noreferrer'>
+      <div className="RUDoppCard_header">
+        <div className="RUDoppCard_website">
+          <a href={websiteName} target="_blank" rel="noreferrer">
             {websiteName}
           </a>
         </div>
-        <div className='RUDoppCard_heading'>
+        <div className="RUDoppCard_heading">
           <strong>{mangaName}</strong>
         </div>
       </div>
 
-      <div className='RUDoppCard_buttons'>
-        <div className='RUDoppCard_delete'>
+      <div className="RUDoppCard_buttons">
+        <div className="RUDoppCard_delete">
           <button onClick={handleDelete}>
             {deleteResponse ? "Deleting..." : "DELETE"}
           </button>
         </div>
-        <div className='RUDoppCard_repost'>
-          <button onClick={handleRepost}>
-            {repostResponse ? "Reposting..." : "REPOST"}
-          </button>
-        </div>
-        <div className='RUDoppCard_update'>
+
+        <div className="RUDoppCard_update">
           <button onClick={() => setUpdate(!update)}>
             {update ? "CLOSE" : "UPDATE"}
           </button>
         </div>
       </div>
       {update ? (
-        <div className='bgcolorFour RUDoppCard_update_container'>
-          <form className='RUDoppCard_form' onSubmit={handleSubmit}>
-            <div className='RUDoppCard_form_item'>
-              <label htmlFor='firstChapter'>
+        <div className="bgcolorFour RUDoppCard_update_container">
+          <form className="RUDoppCard_form" onSubmit={handleSubmit}>
+            <div className="RUDoppCard_form_item">
+              <label htmlFor="firstChapter">
                 {" "}
                 <strong>First chapter: </strong>{" "}
                 <a
                   href={firstChapter}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {firstChapter}
                 </a>
               </label>
               <input
                 required
-                type='text'
-                placeholder='Enter firstChapter'
-                name='firstChapter'
+                type="text"
+                placeholder="Enter firstChapter"
+                name="firstChapter"
                 onChange={(e) =>
                   setValues({ ...values, firstChapter: e.target.value })
                 }
               />
             </div>
-            <div className='RUDoppCard_form_item'>
-              <label htmlFor='lastChapter'>
+            <div className="RUDoppCard_form_item">
+              <label htmlFor="lastChapter">
                 {" "}
                 <strong>Last chapter: </strong>
-                <a href={lastChapter} target='_blank' rel='noopener noreferrer'>
+                <a href={lastChapter} target="_blank" rel="noopener noreferrer">
                   {lastChapter}
                 </a>
               </label>
               <input
                 required
-                type='text'
-                placeholder='Enter lastChapter'
-                name='lastChapter'
+                type="text"
+                placeholder="Enter lastChapter"
+                name="lastChapter"
                 onChange={(e) =>
                   setValues({ ...values, lastChapter: e.target.value })
                 }
               />
             </div>
-            <button type='submit'>
+            <button type="submit">
               {response ? "Submiting..." : "Submit Manga"}
             </button>
           </form>
@@ -189,6 +185,7 @@ const RUDOpp = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [currentLoadManga, setcurrentLoadManga] = useState(20);
+  const [search, setSearch] = useState("");
   const [auth, setAuth] = useState(false);
   const mangas = useSelector((state) => state.allManga);
   let loadManga = [];
@@ -219,11 +216,27 @@ const RUDOpp = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  // sort
+  data.forEach((element) => {
+    let dataString = element.mangaName.toLowerCase();
+    if (dataString.includes(search)) {
+      loadManga.unshift(element);
+    }
+  });
+
   return (
     <div>
       {auth ? (
         <div>
-          <div className='bgcolorOne RUDOpp_container'>
+          <input
+            type="text"
+            name="searchRepDel"
+            id="searchRepDel"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Enter Manga Name"
+            style={{ padding: "10px", margin: "10px", width: "90%" }}
+          />
+          <div className="bgcolorOne RUDOpp_container">
             {loading ? (
               <h3>Loading...</h3>
             ) : loadManga.length > 0 ? (
@@ -240,7 +253,7 @@ const RUDOpp = () => {
                 ? setcurrentLoadManga(currentLoadManga + 15)
                 : setcurrentLoadManga(20)
             }
-            className='bgcolorTwo pointer loadColapse'
+            className="bgcolorTwo pointer loadColapse"
           >
             {currentLoadManga <= data.length ? (
               <h2>Load More</h2>

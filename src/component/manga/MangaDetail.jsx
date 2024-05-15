@@ -76,14 +76,22 @@ const MangaDetail = () => {
     }
 
     return (
-      <div className='bgcolorOne mangaDetails_container'>
-        <div className=' mangaDetails_header'>
-          <img src={mangaCover} alt='mangaCover' />
-          <div className=' detailHeading'>
+      <div className="bgcolorOne mangaDetails_container">
+        <div className=" mangaDetails_header">
+          <div
+            className="mangaBackgroundBanner"
+            style={
+              mangaDetails?.mangaCover && {
+                backgroundImage: `url(${mangaDetails.mangaCover})`,
+              }
+            }
+          ></div>
+          <img src={mangaCover} alt="mangaCover" />
+          <div className=" detailHeading">
             <h1>{mangaName}</h1>
-            <div className=' detailChapterBtn'>
+            <div className=" detailChapterBtn">
               <p
-                className='pointer'
+                className="pointer"
                 onClick={() => {
                   navigate(`/manga/${urlId}/${1}`, {
                     state: { data: firstChapter, chapIndex: totalChapter - 1 },
@@ -94,7 +102,7 @@ const MangaDetail = () => {
               </p>
 
               <p
-                className='pointer'
+                className="pointer"
                 onClick={() => {
                   navigate(`/manga/${urlId}/${totalChapter}`, {
                     state: { data: lastChapter, chapIndex: 0 },
@@ -106,14 +114,14 @@ const MangaDetail = () => {
             </div>
           </div>
         </div>
-        <div className=' bgcolorThree detailChapters'>
-          <h1 className='bgcolorFour'>Chapter List</h1>
-          <div className='bgcolorTwo chapterList_cotainer'>
+        <div className=" bgcolorThree detailChapters">
+          <h1 className="bgcolorFour">Chapter List</h1>
+          <div className="bgcolorTwo chapterList_cotainer">
             {chapLinks.length >= 1 ? (
               chapters.map((item, index) => {
                 return (
                   <h2
-                    className='bgcolorFour pointer'
+                    className="bgcolorFour pointer"
                     key={index}
                     onClick={() => {
                       navigate(`/manga/${urlId}/${item}`, {
@@ -126,7 +134,7 @@ const MangaDetail = () => {
                 );
               })
             ) : (
-              <div className=' skeleton_chapterList_cotainer'>
+              <div className=" skeleton_chapterList_cotainer">
                 <Skeleton width={1400} height={400} />
               </div>
             )}
@@ -138,7 +146,7 @@ const MangaDetail = () => {
 
   return (
     <div>
-      <div className='skull_manga_details'>
+      <div className="skull_manga_details">
         <Skeleton height={250} width={200} />
         <div>
           <h1>{<Skeleton width={"70%"} height={45} />}</h1>
@@ -150,7 +158,7 @@ const MangaDetail = () => {
       </div>
       <div>
         <h1>{<Skeleton width={"100%"} height={120} />}</h1>
-        <div className=' skeleton_chapterList_cotainer'>
+        <div className=" skeleton_chapterList_cotainer">
           <Skeleton width={"100%"} height={400} />
         </div>
       </div>

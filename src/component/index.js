@@ -10,6 +10,7 @@ import AddCreateManga from "./advanceUpload/AddCreateManga";
 import MangaType from "./mangaType/MangaType";
 import RUDOpp from "./rudopp/RUDOpp";
 import Footer from "./footer/Footer";
+import About from "./About/About";
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   MangaType,
   RUDOpp,
   Footer,
+  About,
 };

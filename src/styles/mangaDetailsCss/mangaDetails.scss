@@ -2,31 +2,38 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
   font-size: 1rem;
   margin: auto;
   padding-top: 20px;
   margin-bottom: 20px;
   .mangaDetails_header {
-    padding: 0 0 10px 30px;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 20px;
     align-items: flex-end;
+    width: 95%;
+    border-radius: 10px;
+    overflow: hidden;
 
     img,
     .mangaDetailSkeletonIng {
+      position: relative;
       max-width: 220px;
       min-width: 150px;
       width: 100%;
+      z-index: 1;
     }
-
+    .detailHeading {
+      position: relative;
+      z-index: 1;
+    }
     h1 {
       text-transform: uppercase;
       font-size: 2em;
-
+      color: white;
       margin: 0;
     }
     .detailChapterBtn {
@@ -57,25 +64,54 @@
     flex-direction: column;
     display: flex;
     width: 100%;
-
+    align-items: center;
     h1 {
       font-size: 2em;
       padding: 20px;
-      padding: 30px 0 20px 15px;
+      padding: 20px 0 20px 15px;
+      width: 95%;
+      border-radius: 10px;
     }
     .chapterList_cotainer {
       display: flex;
       width: 80%;
-      padding: 35px 30px 15px 30px;
-      margin: 3em auto 2em auto;
+      padding: 10px 30px 15px 30px;
+      margin: 0 auto 2em auto;
       border: 2px white solid;
+      border-right: 0;
+      // border-left: 10px white solid;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
       height: 70vh;
       overflow-y: scroll;
+      overflow-x: hidden;
       gap: 10px;
+      /* Track */
+      &::-webkit-scrollbar {
+        width: 10px; /* Width of the scrollbar */
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: black; /* Color of the scrollbar handle */
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: greenyellow; /* Color of the scrollbar handle on hover */
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: white; /* Color of the scrollbar track */
+      }
+
+      /* Track on hover */
+      &::-webkit-scrollbar-track:hover {
+        background: white; /* Color of the scrollbar track on hover */
+      }
 
       h2 {
         margin: 7px;
@@ -84,6 +120,7 @@
         align-items: center;
         justify-content: center;
         border: 3px solid #f0f0f0;
+
         padding: 8px 12px 8px 12px;
         width: 7em;
       }

@@ -9,6 +9,7 @@ import {
   SubHeader,
   Login,
   MangaType,
+  About,
   Footer,
 } from "./component";
 import { Routes, Route } from "react-router-dom";
@@ -52,22 +53,23 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className='appBodyContainer'>
-      <SkeletonTheme baseColor='#202020' highlightColor='#444'>
+    <div className="appBodyContainer">
+      <SkeletonTheme baseColor="#202020" highlightColor="#444">
         <SubHeader />
         <Navbar />
         <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/mostViewed' element={<MostViewed />} />
-          <Route exact path='/latest' element={<LatestManga />} />
-          <Route exact path='/mangaType/:type' element={<MangaType />} />
-          <Route exact path='/searched' element={<Searched />} />
-          <Route exact path='/manga/:id' element={<MangaDetail />} />
-          <Route exact path='/manga/:id/:chapter' element={<MangaChapter />} />
-          <Route exact path='/createManga' element={<CreateManga />} />
-          <Route exact path='/repostDelete' element={<RUDOpp />} />
-          <Route exact path='/AddCreateManga' element={<AddCreateManga />} />
-          <Route path='/login' element={<Login />}></Route>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/mostViewed" element={<MostViewed />} />
+          <Route exact path="/latest" element={<LatestManga />} />
+          <Route exact path="/mangaType/:type" element={<MangaType />} />
+          <Route exact path="/searched" element={<Searched />} />
+          <Route exact path="/manga/:id" element={<MangaDetail />} />
+          <Route exact path="/manga/:id/:chapter" element={<MangaChapter />} />
+          <Route exact path="/createManga" element={<CreateManga />} />
+          <Route exact path="/repostDelete" element={<RUDOpp />} />
+          <Route exact path="/AddCreateManga" element={<AddCreateManga />} />
+          <Route exact path="/aboutMangaNexus" element={<About />} />
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
         <Footer />
       </SkeletonTheme>

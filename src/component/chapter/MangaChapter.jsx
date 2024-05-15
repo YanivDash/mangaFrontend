@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import mangaChapter from "../../../apiCall/mangaChapter";
+import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -18,17 +19,31 @@ const ImageHolder = (props) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <LazyLoadImage
-      effect='blur'
-      src={props.source}
-      alt='chapter image'
-      className={` lazyChapterImg ${
-        props.indexNum === 0 && imgError ? "zero" : ""
-      } ${imageLoaded ? "noneed" : "imgStillLOading"}`}
-      onError={() => setImgError(true)}
-      onLoad={() => setImageLoaded(true)}
-      threshold={300}
-    />
+    <div>
+      <div
+        className={
+          imageLoaded
+            ? "loaderNoDisplay"
+            : imgError
+            ? "loaderNoDisplay"
+            : "LoaderIs"
+        }
+      >
+        <Loader />
+      </div>
+
+      <LazyLoadImage
+        effect="blur"
+        src={props.source}
+        alt="chapter image"
+        className={` lazyChapterImg ${
+          props.indexNum === 0 && imgError ? "zero" : ""
+        } ${imageLoaded ? "noneed" : "imgStillLOading"}`}
+        onError={() => setImgError(true)}
+        onLoad={() => setImageLoaded(true)}
+        threshold={300}
+      />
+    </div>
   );
 };
 
@@ -92,7 +107,6 @@ const MangaChapter = () => {
         }
       }
     }
-
     const fetchData = async (values) => {
       try {
         const manga = await mangaChapter(values);
@@ -130,17 +144,30 @@ const MangaChapter = () => {
   };
 
   return (
-    <div className='bgcolorOne chapter_container'>
-      <div className='bgcolorThree allChapters'>
+    <div className="bgcolorOne chapter_container">
+      <div className="bgcolorThree allChapters">
+        <div
+          className="mangaBackgroundBanner"
+          style={
+            // mangaDetails?.mangaCover && {
+            //   backgroundImage: `url(${mangaDetails.mangaCover})`,
+            // }
+            chapData?.chapterImg && {
+              backgroundImage: `url(${chapData.chapterImg[0]})`,
+            }
+          }
+        ></div>
         <Link to={`/manga/${id}`}>
           <h2>{mangaName}</h2>
-          <h3> chapter {chapter}</h3>
+          <h3>
+            Chapter <span> {chapter}</span>
+          </h3>
         </Link>
       </div>
-      <div className='bgcolorTwo nextPrevBtn'>
+      <div className="bgcolorTwo nextPrevBtn">
         {chapter > 1 && (
           <button
-            type='button'
+            type="button"
             onClick={() => {
               navigate(`/manga/${id}/${parseInt(chapter) - 1}`, {
                 state: {
@@ -158,7 +185,7 @@ const MangaChapter = () => {
           ""
         ) : (
           <button
-            type='button'
+            type="button"
             onClick={() => {
               navigate(`/manga/${id}/${parseInt(chapter) + 1}`, {
                 state: {
@@ -173,13 +200,12 @@ const MangaChapter = () => {
           </button>
         )}
       </div>
-
       {loading ? (
-        <div className='chapterImg_cotainer'>
+        <div className="chapterImg_cotainer">
           {chapData.chapterImg ? (
             chapData.chapterImg.map((el, index) => {
               return (
-                <div key={index} className='imgHolder'>
+                <div key={index} className="imgHolder">
                   {/* <LazyLoadImage
                     effect='blur'
                     src={el}
@@ -199,12 +225,12 @@ const MangaChapter = () => {
           )}
         </div>
       ) : (
-        <div className='whenLoad'></div>
+        <div className="whenLoad"></div>
       )}
-      <div className='bgcolorTwo nextPrevBtn'>
+      <div className="bgcolorTwo nextPrevBtn">
         {chapter > 1 && (
           <button
-            type='button'
+            type="button"
             onClick={() => {
               navigate(`/manga/${id}/${parseInt(chapter) - 1}`, {
                 state: {
@@ -222,7 +248,7 @@ const MangaChapter = () => {
           ""
         ) : (
           <button
-            type='button'
+            type="button"
             onClick={() => {
               navigate(`/manga/${id}/${parseInt(chapter) + 1}`, {
                 state: {

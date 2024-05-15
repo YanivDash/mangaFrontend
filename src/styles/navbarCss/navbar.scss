@@ -73,6 +73,17 @@
         list-style: none;
         align-items: center;
         justify-content: space-around;
+
+        #selectMangaType {
+          padding: 0.5em 1em;
+          font-size: 1em;
+          background-color: transparent;
+          border: 0;
+
+          option {
+            color: grey;
+          }
+        }
       }
 
       @media screen and (max-width: 780px) {
@@ -215,6 +226,7 @@
     background-color: transparent;
     transition: all 0.2s ease-in-out;
   }
+
   @keyframes glowing {
     0% {
       color: yellow;
@@ -237,6 +249,18 @@
 
     100% {
       transform: translateY(0);
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .navbar_container {
+    .navbar_links_container {
+      .navbar_manga {
+        width: 65%;
+      }
+      .navbar_right {
+        width: 35%;
+      }
     }
   }
 }

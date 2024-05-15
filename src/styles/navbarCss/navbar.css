@@ -73,6 +73,15 @@
   align-items: center;
   justify-content: space-around;
 }
+.navbar_container .navbar_links_container .navbar_manga .navbar_manga_lists #selectMangaType {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  background-color: transparent;
+  border: 0;
+}
+.navbar_container .navbar_links_container .navbar_manga .navbar_manga_lists #selectMangaType option {
+  color: grey;
+}
 @media screen and (max-width: 780px) {
   .navbar_container .navbar_links_container .navbar_manga .navbar_manga_lists {
     display: none;
@@ -218,5 +227,14 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 1000px) {
+  .navbar_container .navbar_links_container .navbar_manga {
+    width: 65%;
+  }
+  .navbar_container .navbar_links_container .navbar_right {
+    width: 35%;
   }
 }/*# sourceMappingURL=navbar.css.map */

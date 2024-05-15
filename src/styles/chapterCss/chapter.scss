@@ -5,17 +5,36 @@
   font-size: 1rem;
   .allChapters {
     display: flex;
-
+    position: relative;
     width: 100%;
     padding: 2em 0 2em 0;
-    h1 {
-      margin-left: 1em;
+    align-items: center;
+    justify-content: center;
 
+    text-align: center;
+
+    h2 {
       font-size: 2em;
-      text-decoration: underline;
+      color: white;
+      position: relative;
       text-transform: uppercase;
+      z-index: 1;
+    }
+    h3 {
+      position: relative;
+      z-index: 1;
+      color: white;
+      span {
+        color: greenyellow;
+      }
+    }
+    @media (max-width: 500px) {
+      h2 {
+        font-size: 1.2em;
+      }
     }
   }
+
   .nextPrevBtn {
     display: flex;
     align-items: center;
@@ -40,10 +59,17 @@
       span {
         display: flex !important;
       }
+      .LoaderIs {
+        position: absolute;
+      }
+      .loaderNoDisplay {
+        display: none;
+      }
     }
 
     div {
       height: fit-content;
+
       .lazyChapterImg {
         width: 100%;
         height: auto;

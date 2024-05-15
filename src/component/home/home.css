@@ -30,6 +30,12 @@
   margin: 0.5em;
 }
 
+.home_container h2 {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 @media screen and (max-width: 500px) {
   .homeSkeleton {
     width: 120px;

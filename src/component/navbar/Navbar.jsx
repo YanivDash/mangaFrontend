@@ -46,11 +46,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className='navbar_container navbar_icons'>
-      {" "}
-      <div className='navbar_links_container'>
-        <div className='navbar_manga'>
-          <div className='left_icons_logo'>
+    <div className="navbar_container navbar_icons">
+      <div className="navbar_links_container">
+        <div className="navbar_manga">
+          <div className="left_icons_logo">
             <IoIosArrowDroprightCircle
               onClick={() => setMobileMenu(!mobileMenu)}
               className={
@@ -59,10 +58,10 @@ const Navbar = () => {
                   : "navbar_icon_simple  navbar_menu_slide navbar_icons"
               }
             />
-            <Link to='/'>
+            <Link to="/">
               <img
                 src={LogoSmall}
-                alt='Logo'
+                alt="Logo"
                 className={
                   mobileMenu
                     ? "samll_logo_img  navbar_menu_slide navbar_icons"
@@ -71,31 +70,50 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <ul className='navbar_manga_lists'>
-            <Link to='/'>
+          <ul className="navbar_manga_lists">
+            <Link to="/">
               <img
-                className='navbarLogo'
+                className="navbarLogo"
                 src={`${light ? LogoWhiteMode : Logo}`}
-                alt='Logo'
+                alt="Logo"
               />
             </Link>
-            <Link to='/mostViewed'>
-              <li className='iconColor navbar_manga_item'>Most-Viewed</li>
+            <Link to="/mostViewed">
+              <li className="iconColor navbar_manga_item">Most-Viewed</li>
             </Link>
-            <Link to='/latest'>
-              <li className='iconColor navbar_manga_item'>Latest</li>
+            <Link to="/latest">
+              <li className="iconColor navbar_manga_item">Latest</li>
             </Link>
+
+            <select
+              className=" iconColor navbar_manga_item"
+              onChange={(e) => navigate(`/mangaType/${e.target.value}`)}
+              name="type"
+              id="selectMangaType"
+              value="DEFAULT"
+            >
+             <option value="DEFAULT" disabled>Select-type</option>
+              <option className="iconColor" value="manga">
+                Manga
+              </option>
+              <option className="iconColor" value="manhwa">
+                Manhwa
+              </option>
+              <option className="iconColor" value="manhua">
+                Manhua
+              </option>
+            </select>
           </ul>
         </div>
-        <div className='navbar_right'>
+        <div className="navbar_right">
           <div>
-            <div className='navbar_search'>
+            <div className="navbar_search">
               <form onSubmit={handleSubmit}>
                 <input
                   required
-                  type='text'
-                  placeholder='Enter manga name'
-                  name='searchInput'
+                  type="text"
+                  placeholder="Enter manga name"
+                  name="searchInput"
                   onChange={(e) => setInput(e.target.value)}
                 />
               </form>
@@ -108,7 +126,7 @@ const Navbar = () => {
 
                     setSearch(!search);
                   }}
-                  className='iconColor navbar_icons'
+                  className="iconColor navbar_icons"
                 />
               </p>
             </div>
@@ -121,12 +139,12 @@ const Navbar = () => {
             {light ? (
               <RiLightbulbFlashFill
                 onClick={() => dispatch(lightAdd(!light))}
-                className='navbar_none navbar_icons  navbar_glowing'
+                className="navbar_none navbar_icons  navbar_glowing"
               />
             ) : (
               <RiLightbulbFlashLine
                 onClick={() => dispatch(lightAdd(!light))}
-                className='navbar_none navbar_icons'
+                className="navbar_none navbar_icons"
               />
             )}
           </p>
@@ -137,10 +155,10 @@ const Navbar = () => {
           <input
             autoFocus
             required
-            id='small_screen_input'
-            className='navbar_search_input'
-            type='text'
-            placeholder='enter manga...'
+            id="small_screen_input"
+            className="navbar_search_input"
+            type="text"
+            placeholder="enter manga..."
             onChange={(e) => setInput(e.target.value)}
           />
         </form>
@@ -152,55 +170,55 @@ const Navbar = () => {
             : "navbar_mobile_hide divVarientTwo navbar_mobile"
         }
       >
-        <div className='divVarientOne navbar_mobile_manga'>
-          <div className='navbar_mobile_left_inks'>
-            <ul className='navbar_mobile_manga_lists'>
+        <div className="divVarientOne navbar_mobile_manga">
+          <div className="navbar_mobile_left_inks">
+            <ul className="navbar_mobile_manga_lists">
               <br />
-              <Link to='/'>
+              <Link to="/">
                 <img
                   onClick={() => setMobileMenu(false)}
-                  className='navbarLogo'
+                  className="navbarLogo"
                   src={`${light ? LogoWhiteMode : Logo}`}
-                  alt='Logo'
+                  alt="Logo"
                 />
               </Link>
               <hr />
-              <Link to='/mostViewed'>
+              <Link to="/mostViewed">
                 <li
                   onClick={() => setMobileMenu(false)}
-                  className='navbar_mobile_manga_item'
+                  className="navbar_mobile_manga_item"
                 >
                   Most-Viewed
                 </li>
               </Link>
-              <Link onClick={() => setMobileMenu(false)} to='/latest'>
-                <li className='navbar_mobile_manga_item'>Latest</li>
+              <Link onClick={() => setMobileMenu(false)} to="/latest">
+                <li className="navbar_mobile_manga_item">Latest</li>
               </Link>
             </ul>
           </div>
-          <div className='iconColor nvabar_mobile_manga_type'>
+          <div className="iconColor nvabar_mobile_manga_type">
             <hr />
-            <ul className='  navbar_mobile_manga_type'>
-              <Link to='/mangaType/manga'>
+            <ul className="  navbar_mobile_manga_type">
+              <Link to="/mangaType/manga">
                 <li
                   onClick={() => setMobileMenu(false)}
-                  className=' navbar_mobile_manga_item'
+                  className=" navbar_mobile_manga_item"
                 >
                   Manga
                 </li>
               </Link>
-              <Link to='/mangaType/manhwa'>
+              <Link to="/mangaType/manhwa">
                 <li
                   onClick={() => setMobileMenu(false)}
-                  className=' navbar_mobile_manga_item'
+                  className=" navbar_mobile_manga_item"
                 >
                   Manwha
                 </li>
               </Link>
-              <Link to='/mangaType/manhua'>
+              <Link to="/mangaType/manhua">
                 <li
                   onClick={() => setMobileMenu(false)}
-                  className=' navbar_mobile_manga_item'
+                  className=" navbar_mobile_manga_item"
                 >
                   Manhua
                 </li>

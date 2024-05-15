@@ -2,30 +2,39 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
   font-size: 1rem;
   margin: auto;
   padding-top: 20px;
   margin-bottom: 20px;
 }
 .mangaDetails_container .mangaDetails_header {
-  padding: 0 0 10px 30px;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 20px;
   align-items: flex-end;
+  width: 95%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .mangaDetails_container .mangaDetails_header img,
 .mangaDetails_container .mangaDetails_header .mangaDetailSkeletonIng {
+  position: relative;
   max-width: 220px;
   min-width: 150px;
   width: 100%;
+  z-index: 1;
+}
+.mangaDetails_container .mangaDetails_header .detailHeading {
+  position: relative;
+  z-index: 1;
 }
 .mangaDetails_container .mangaDetails_header h1 {
   text-transform: uppercase;
   font-size: 2em;
+  color: white;
   margin: 0;
 }
 .mangaDetails_container .mangaDetails_header .detailChapterBtn {
@@ -53,25 +62,50 @@
   flex-direction: column;
   display: flex;
   width: 100%;
+  align-items: center;
 }
 .mangaDetails_container .detailChapters h1 {
   font-size: 2em;
   padding: 20px;
-  padding: 30px 0 20px 15px;
+  padding: 20px 0 20px 15px;
+  width: 95%;
+  border-radius: 10px;
 }
 .mangaDetails_container .detailChapters .chapterList_cotainer {
   display: flex;
   width: 80%;
-  padding: 35px 30px 15px 30px;
-  margin: 3em auto 2em auto;
+  padding: 10px 30px 15px 30px;
+  margin: 0 auto 2em auto;
   border: 2px white solid;
+  border-right: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   height: 70vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   gap: 10px;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+  /* Track */
+  /* Track on hover */
+}
+.mangaDetails_container .detailChapters .chapterList_cotainer::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+.mangaDetails_container .detailChapters .chapterList_cotainer::-webkit-scrollbar-thumb {
+  background: black; /* Color of the scrollbar handle */
+}
+.mangaDetails_container .detailChapters .chapterList_cotainer::-webkit-scrollbar-thumb:hover {
+  background: greenyellow; /* Color of the scrollbar handle on hover */
+}
+.mangaDetails_container .detailChapters .chapterList_cotainer::-webkit-scrollbar-track {
+  background: white; /* Color of the scrollbar track */
+}
+.mangaDetails_container .detailChapters .chapterList_cotainer::-webkit-scrollbar-track:hover {
+  background: white; /* Color of the scrollbar track on hover */
 }
 .mangaDetails_container .detailChapters .chapterList_cotainer h2 {
   margin: 7px;

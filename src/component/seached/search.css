@@ -9,3 +9,19 @@
   max-width: 480px;
   width: 100%;
 }
+
+.searchHeading {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.searchHeading h3 {
+  text-transform: capitalize;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+}
+.searchHeading h3 span {
+  color: greenyellow;
+}

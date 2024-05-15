@@ -1,14 +1,13 @@
-import MangaCard from "../mangaCard/MangaCard";
+import LoadManga from "../LoadManga/LoadManga"
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-
+import { GiSnailEyes, GiEyestalk } from "react-icons/gi";
+import SkeletonComp from "../skeleton/SkeletonComp";
 const MostViewed = () => {
   const [loading, setLoading] = useState(true);
-  const [currentLoadManga, setcurrentLoadManga] = useState(20);
   const mangas = useSelector((state) => state.allManga);
-  let loadManga = [];
   let data = mangas.allMangas;
+
   useEffect(() => {
     if (data.length >= 1) setLoading(false);
   }, [data]);
@@ -17,59 +16,23 @@ const MostViewed = () => {
   sortedData.sort((a, b) => b.totalViews - a.totalViews);
 
   if (!sortedData) setLoading(true);
-  if (sortedData.length > 0) {
-    loadManga = sortedData.slice(0, currentLoadManga);
-  }
 
   return (
-    <div className='home_container'>
-      <h2>Most Viewed</h2>
-      <div className='home_manga_container'>
+    <div className="home_container">
+      <h2>
+        {" "}
+        <GiSnailEyes style={{ color: "greenyellow" }} /> Most Viewed{" "}
+        <GiEyestalk />
+      </h2>
         {loading ? (
-          <div className='homeSkeletonContainer'>
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
-            <Skeleton className='homeSkeleton' />
+          <div>
+            <SkeletonComp
+              parent_class={"homeSkeletonContainer"}
+              class_name={"homeSkeleton"}
+              num={20}
+            />
           </div>
-        ) : loadManga.length > 0 ? (
-          loadManga.map((item, index) => {
-            return <MangaCard key={index} data={item} />;
-          })
-        ) : (
-          <h3>nothing to show here</h3>
-        )}
-      </div>
-      <div
-        onClick={() =>
-          currentLoadManga <= data.length
-            ? setcurrentLoadManga(currentLoadManga + 15)
-            : setcurrentLoadManga(20)
-        }
-        className='bgcolorTwo pointer loadColapse'
-      >
-        {currentLoadManga <= data.length ? (
-          <h2>Load More</h2>
-        ) : (
-          <h2>Collapse Loaded</h2>
-        )}
-      </div>
+        ) :  <LoadManga data={sortedData}/>}
     </div>
   );
 };
