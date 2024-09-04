@@ -13,6 +13,12 @@ import axios from "axios";
 import { allChapLinksAdd } from "../../reducers/allChapLinks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import {
+  NoMoreManga1,
+  NoMoreManga2,
+  NoMoreManga3,
+  NoMoreManga4,
+} from "../../assets";
 
 const ImageHolder = (props) => {
   const [imgError, setImgError] = useState(false);
@@ -56,8 +62,6 @@ const MangaChapter = () => {
   let { id, chapter } = urlParams;
 
   const [loading, setLoading] = useState(false);
-  // const [imgError, setImgError] = useState(false);
-  // const [imageLoaded, setImageLoaded] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -71,6 +75,13 @@ const MangaChapter = () => {
   let totalChapter;
   let mangaName;
   let webLink;
+
+  const noMoreChapterImg = [
+    NoMoreManga1,
+    NoMoreManga2,
+    NoMoreManga3,
+    NoMoreManga4,
+  ];
 
   const mangaDetails = data.find((item) => {
     if (item.id == id) {
@@ -202,26 +213,21 @@ const MangaChapter = () => {
       </div>
       {loading ? (
         <div className="chapterImg_cotainer">
-          {chapData.chapterImg ? (
+          {chapData.chapterImg.length > 0 ? (
             chapData.chapterImg.map((el, index) => {
               return (
                 <div key={index} className="imgHolder">
-                  {/* <LazyLoadImage
-                    effect='blur'
-                    src={el}
-                    alt='chapter image'
-                    className={`lazyChapterImg ${
-                      index === 0 && imgError ? "zero" : ""
-                    } ${imageLoaded ? "lazyChapterImg" : "imgStillLOading"}`}
-                    onError={() => setImgError("zero")}
-                    onLoad={() => setImageLoaded(true)}
-                  /> */}
                   <ImageHolder source={el} indexNum={index} />
                 </div>
               );
             })
+          ) : chapter == totalChapter ? (
+            <img
+              style={{ maxWidth: "100%" }}
+              src={`${noMoreChapterImg[Math.floor((Math.random() * 4 ))]}`}
+            />
           ) : (
-            <h1>ntg here</h1>
+            ""
           )}
         </div>
       ) : (

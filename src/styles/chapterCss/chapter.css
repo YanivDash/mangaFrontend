@@ -56,9 +56,6 @@
 .chapter_container .chapterImg_cotainer .imgHolder span {
   display: flex !important;
 }
-.chapter_container .chapterImg_cotainer .imgHolder .LoaderIs {
-  position: absolute;
-}
 .chapter_container .chapterImg_cotainer .imgHolder .loaderNoDisplay {
   display: none;
 }

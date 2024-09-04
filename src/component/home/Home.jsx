@@ -14,6 +14,17 @@ const Home = () => {
     if (data.length >= 1) setLoading(false);
   }, [data]);
 
+  const sortedData = [...data];
+  // Sort the new array based on the "id" property
+  sortedData.sort((a, b) => {
+    const timestampA = new Date(a.dateUpdate);
+    const timestampB = new Date(b.dateUpdate);
+
+    return timestampB - timestampA;
+  });
+
+  if (!sortedData) setLoading(true);
+
   return (
     <div>
       <Banner />
@@ -25,7 +36,7 @@ const Home = () => {
               num={20}
             />
           </div>
-        ) : <LoadManga data={data}/> }
+        ) : <LoadManga data={sortedData}/> }
     </div>
   );
 };
